@@ -2,12 +2,13 @@
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Users\Repository as UserRepository;
+use App\Footer;
 
 class FooterComposer {
 
     public function compose(View $view)
     {
-        $view->with('viewFooter', view('layouts.footer'));
-    }
-
+    	$contentFooter = Footer::content();
+        $view->with('contentFooter', $contentFooter);
+	}
 }

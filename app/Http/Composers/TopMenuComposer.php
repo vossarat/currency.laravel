@@ -7,7 +7,7 @@ class TopMenuComposer {
 
     public function compose(View $view)
     {
-        //$view->with('viewTopMenu', view('layouts.top_menu')->render());
+        $view;
     }
 
 }

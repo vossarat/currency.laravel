@@ -1,13 +1,19 @@
 @extends('layouts.default')
 
-@section('title', $titlePage = 'Заголовок' )
+@section('title', 'Page Title')
 
 @section('top_menu')
-	@include('layouts.top_menu')
+	@parent
 @endsection
 
-@section('myfield', $content = 'Информация')
+@section('content')
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+       {{ $content }}  
+    </div>
+</div>
+@endsection
 
 @section('footer')
-	Подвал
+	@parent
 @endsection

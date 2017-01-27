@@ -13,7 +13,19 @@
 
 /*Route::get('/', function () {
 	return view('welcome');
-});
-*/
+});*/
+
+Auth::routes();
 
 Route::get('/', 'DefaultController@index');
+
+Route::get('/home', ['uses'=>'HomeController@index','as'=>'home']);
+
+//Административная панель
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
+	
+	Route::get('/', ['uses'=>'AdminPanelController@index','as'=>'panel']);
+	
+});
+
+
