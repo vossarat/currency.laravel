@@ -1,10 +1,6 @@
 @extends('layouts.default')
 
-@section('top_menu')
-	{!! $viewTopMenu !!}
-@endsection
-
-@section('myfield')
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -69,8 +65,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('footer')
-	{!! $viewFooter !!}
 @endsection

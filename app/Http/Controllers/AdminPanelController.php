@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class AdminPanelController extends Controller
 {
     public function index() {
-		dd('into AdminPanelController index');
+		return view('home');
 	}
 }

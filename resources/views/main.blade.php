@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Page Title')
+@section('title', 'Main Page')
 
 @section('top_menu')
 	@parent
