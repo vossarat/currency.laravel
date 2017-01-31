@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('default.layouts.template')
 
 @section('title', 'Main Page')
 

@@ -31,13 +31,13 @@
     </head>
     <body>
         @section('top_menu')
-        	@include('layouts.top_menu')
+        	@include('default.layouts.top_menu')
         @show
 
         @yield('content')
         
         @section('footer')
-        	@include('layouts.footer')
+        	@include('default.layouts.footer')
         @show
     </body>
 </html>
