@@ -6,38 +6,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>
-        	@section('title')
-            	{{ $title or 'КВ' }}
+            @section('title')
+            {{ $title or 'КВ' }}
             @show
-            
+
         </title>
 
         <!-- Styles -->
-        <!--<link href="/css/app.css" rel="stylesheet">-->
-
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}"> --}}
-
-        <!-- Optional theme -->
-        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">-->
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-        </script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js">
-        </script>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
     </head>
     <body>
-        @section('top_menu')
-        	@include('default.layouts.top_menu')
-        @show
 
-        @yield('content')
-        
-        @section('footer')
-        	@include('default.layouts.footer')
-        @show
+        <div class="container-fluid">
+            <div class="row">
+                @section('top_menu')
+                @include('default.layouts.top_menu')
+                @show
+            </div>
+
+            <div class="row">
+                @yield('content')
+            </div>
+
+            <div class="row">
+                @section('footer')
+                @include('default.layouts.footer')
+                @show
+            </div>
+
+        </div>
+        </div>
+
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     </body>
 </html>

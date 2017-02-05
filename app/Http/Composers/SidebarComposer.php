@@ -7,7 +7,6 @@ class SidebarComposer {
 
     public function compose(View $view)
     {
-    	//$contentFooter = Footer::content();
-        $view;//->with('contentFooter', $contentFooter);
+        $view;
 	}
 }

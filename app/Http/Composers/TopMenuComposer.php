@@ -2,12 +2,15 @@
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Users\Repository as UserRepository;
+use App\Menu;
 
-class TopMenuComposer {
+class TopMenuComposer {	
+	
 
     public function compose(View $view)
-    {
-        $view;
+    {        
+    	$viewdata = Menu::all(); 	
+        $view->with('viewdata', $viewdata);
     }
 
 }
