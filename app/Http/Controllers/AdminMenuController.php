@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Menu;
+use App\User;
 
 class AdminMenuController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminMenuController extends Controller
 	*/
 	public function index()
 	{
-		$viewdata = $this->menu->getMenu();
+		$viewdata = $this->menu->all();
 		return view('admin.menus')->with(['viewdata'=>$viewdata, 'title'=>'Меню']);
 	}
 
@@ -30,7 +31,10 @@ class AdminMenuController extends Controller
 	*/
 	public function create() //создаем страницу добавления записи
 	{
-		return view('admin.menus_form')->with(['title'=>'Меню']);
+		return view('admin.menu.create')->with([
+				'title'=>'Меню',
+				'parents'=>Menu::all(),
+			]);
 	}
 
 	/**
@@ -42,21 +46,27 @@ class AdminMenuController extends Controller
 	public function store(Request $request) //по нажатию на кнопку Create данные отправятся в метод
 	{
 
-		$messages = [
+		$messages    = [
 			'title.required' => 'Поле заголовок меню обязательно к заполнению',
 			'max' => 'Максимально :attribute',
 		];
-		
-		$rules = [
-			'title' => 'required|max:5',
-			'url' => 'required|max:255|unique:menus,url',
+
+		$rules       = [
+			'title' => 'required|max:255',
+			'url' => 'required|max:255|'//unique:menus,url',
 		];
-		
+
 		$this->validate($request, $rules, $messages);
 
+		$requestData = $request->all();
 
-		Menu::create($request->all());
+		if(isset($requestData['published'])){
+			$requestData['published'] = 1;
+		}
+
+		Menu::create($requestData);
 		return redirect(route('menus.index'))->with('message','Пункт меню добавлен');
+		
 	}
 
 	/**
@@ -78,7 +88,12 @@ class AdminMenuController extends Controller
 	*/
 	public function edit($id) //создаем страницу редактирования записи
 	{
-		dd(__METHOD__);
+		$menu = Menu::find($id);
+		//dd('Заголовок меню - '.$menu->title.' Родитель - '.$menu->parentRecord->title);
+		return view('admin.menus_form')->with([
+				'title'=>'Редактирование Меню',
+				'viewdata' => $menu,
+			]);
 	}
 
 	/**
