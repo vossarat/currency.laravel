@@ -21,7 +21,7 @@ class AdminMenuController extends Controller
 	public function index()
 	{
 		$viewdata = $this->menu->all();
-		return view('admin.menus')->with(['viewdata'=>$viewdata, 'title'=>'Меню']);
+		return view('admin.menu.index')->with(['viewdata'=>$viewdata, 'title'=>'Меню']);
 	}
 
 	/**
@@ -90,7 +90,7 @@ class AdminMenuController extends Controller
 	{
 		$menu = Menu::find($id);
 		//dd('Заголовок меню - '.$menu->title.' Родитель - '.$menu->parentRecord->title);
-		return view('admin.menus_form')->with([
+		return view('admin.menu.edit')->with([
 				'title'=>'Редактирование Меню',
 				'viewdata' => $menu,
 			]);
