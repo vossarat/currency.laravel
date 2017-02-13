@@ -4,7 +4,7 @@
 	</label>
 
 	<div class="col-md-6">
-		<input id="title" type="text" class="form-control" name="title" value="{{ isset($viewdata) ? $viewdata->title : old('title') }}" required autofocus>
+		<input id="title" type="text" class="form-control" name="title" value="{{ $viewdata->title or old('title') }}" required autofocus>
 
 		@if ($errors->has('title'))
 		<span class="help-block">
@@ -22,7 +22,7 @@
 	</label>
 
 	<div class="col-md-6">
-		<input id="url" type="text" class="form-control" name="url" value="{{ old('url')?old('url'):'testlink' }}">
+		<input id="url" type="text" class="form-control" name="url" value="{{ $viewdata->url or old('url') }}">
 		@if ($errors->has('url'))
 		<span class="help-block">
 			<strong>
@@ -33,13 +33,13 @@
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('icon') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('icon') ? ' has-error' : '' }}"> {{-- icon field --}}
 	<label for="icon" class="col-md-4 control-label">
 		icon
 	</label>
 
 	<div class="col-md-6">
-		<input id="icon" type="text" class="form-control" name="icon" value="{{ old('icon')?old('icon'):'imgicon' }}">
+		<input id="icon" type="text" class="form-control" name="icon" value="{{$viewdata->icon or old('icon') }}">
 		@if ($errors->has('icon'))
 		<span class="help-block">
 			<strong>
@@ -48,7 +48,7 @@
 		</span>
 		@endif
 	</div>
-</div>
+</div> {{-- end icon field --}}
 
 <div class="form-group{{ $errors->has('weight') ? ' has-error' : '' }}"> {{-- weight field --}}
 	<label for="weight" class="col-md-4 control-label">
@@ -56,7 +56,7 @@
 	</label>
 
 	<div class="col-md-6">
-		<input id="weight" type="text" class="form-control" name="weight" value="{{ old('weight')?old('weight'):1 }}" required>
+		<input id="weight" type="text" class="form-control" name="weight" value="{{ $viewdata->weight or old('weight')  }}" required>
 		@if ($errors->has('weight'))
 		<span class="help-block">
 			<strong>
@@ -74,9 +74,25 @@
 
 	<div class="col-md-6">
 		<select class="form-control" name="position" >
-			<option>topmenu</option>
-			<option>sidebar</option>
-			<option>adminmenu</option>
+
+			@if(isset($viewdata))
+
+			@foreach($viewdata->positions as $position) 
+				@if($position == $viewdata->position)
+					<option selected>{{ $viewdata->position }}</option>
+				@else
+					<option>{{ $position }}</option>
+				@endif
+			@endforeach
+
+			@else
+				
+			@foreach($positions as $position)
+				<option>{{ $position }}</option>
+			@endforeach
+
+			@endif
+
 		</select>
 		@if ($errors->has('position'))
 		<span class="help-block">
@@ -88,44 +104,58 @@
 	</div>
 </div> {{-- end position field --}}
 
-<div class="form-group{{ $errors->has('parent') ? ' has-error' : '' }}"> {{-- parent field --}}
-	<label for="parent" class="col-md-4 control-label">
-		parent
+<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}"> {{-- category field --}}
+	<label for="category" class="col-md-4 control-label">
+		category
 	</label>
 
 	<div class="col-md-6">
 
-		<select class="form-control" name="parent" >
-			{{-- @foreach($parents as $parent)
-			<option>{{ $parent->title }}</option>
-			@endforeach--}}
+		<select class="form-control" name="category" >
+			@if(isset($viewdata))
+
+				@foreach($viewdata->categories as $category) {{-- title сохраненной категории --}}
+						@if($category->title == $viewdata->category)
+							<option selected>{{ $viewdata->category }}</option>
+						@else
+							<option>{{ $category->title }}</option>
+						@endif
+				@endforeach
+
+			@else
+
+				@foreach($categories as $category)
+					<option>{{ $category->title }}</option>
+				@endforeach
+
+			@endif
 		</select>
 
-		@if ($errors->has('parent'))
+		@if ($errors->has('category'))
 		<span class="help-block">
 			<strong>
-				{{ $errors->first('parent') }}
+				{{ $errors->first('category') }}
 			</strong>
 		</span>
 		@endif
 	</div>
-</div> {{-- end parent field --}}
+</div> {{-- end category field --}}
 
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">
 		<div class="checkbox">
 			<label class="form-check-label">
-				<input class="form-check-input" type="checkbox" name="published" value="">
-				Опубликовать
+				@if(isset($viewdata))
+				@if($viewdata->published)
+				<input class="form-check-input" type="checkbox" name="published" checked>
+				@else
+				<input class="form-check-input" type="checkbox" name="published">
+				@endif
+				@else
+				<input class="form-check-input" type="checkbox" name="published">
+				@endif
+				Опубликовано
 			</label>
 		</div>
-	</div>
-</div>
-
-<div class="form-group">
-	<div class="col-md-6 col-md-offset-4">
-		<button type="submit" class="btn btn-primary">
-			Добавить
-		</button>
 	</div>
 </div>

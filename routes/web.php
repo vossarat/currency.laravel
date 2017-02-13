@@ -30,7 +30,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 		Route::get('users', 'AdminController@tableUsers')->name('users');
 		Route::get('users/edit/{id}', 'AdminController@editUser');
 		
-		Route::resource('menus','AdminMenuController');
+		Route::resource('menus','AdminMenuController'); // resource conroller for menu 
+		
+		
     });
 
 

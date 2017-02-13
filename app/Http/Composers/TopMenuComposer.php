@@ -4,13 +4,17 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Users\Repository as UserRepository;
 use App\Menu;
 
-class TopMenuComposer {	
+class TopMenuComposer
+{
+	public function __construct(Menu $menu)
+	{
+		$this->menu = $menu;
+	}
 	
-
-    public function compose(View $view)
-    {        
-    	$viewdata = Menu::all(); 	
-        $view->with('viewdata', $viewdata);
-    }
+	public function compose(View $view)
+	{
+		$viewdata = $this->menu->published()->position('topmenu')->orderBy('weight')->get();
+		$view->with('viewdata', $viewdata);
+	}
 
 }

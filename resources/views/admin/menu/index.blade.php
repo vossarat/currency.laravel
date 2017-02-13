@@ -41,7 +41,7 @@
 						</form>
 					</td>
 					<td>
-						<form action="{{ route('menus.edit', $menu->id) }}">
+						<form action="{{ route('menus.edit', $menu->id) }}"> 							
 							<button type="submit" class="close"><i class="glyphicon glyphicon-edit"></i></button>
 						</form>
 					</td>

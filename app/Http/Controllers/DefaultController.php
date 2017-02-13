@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MainPage;
+use App\Menu;
 
 class DefaultController extends Controller
 {
+
     public function index() {
     	
     	$contentMainPage = MainPage::content();

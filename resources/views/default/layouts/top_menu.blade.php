@@ -13,7 +13,8 @@
         <ul class="nav navbar-nav">
             @foreach($viewdata as $menu)
             <li>
-                <a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                <a href="{{ $menu->url }}">{{ $menu->title }}</a>
+            </li>
             @endforeach
         </ul>
         <ul class="nav navbar-nav navbar-right">

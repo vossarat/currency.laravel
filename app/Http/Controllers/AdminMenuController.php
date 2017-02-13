@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+use App\Http\Requests\MenuRequest;
 use App\Menu;
 use App\User;
 
@@ -18,7 +18,7 @@ class AdminMenuController extends Controller
 	*
 	* @return \Illuminate\Http\Response
 	*/
-	public function index()
+	public function index() //основная страница просмотра
 	{
 		$viewdata = $this->menu->all();
 		return view('admin.menu.index')->with(['viewdata'=>$viewdata, 'title'=>'Меню']);
@@ -33,7 +33,8 @@ class AdminMenuController extends Controller
 	{
 		return view('admin.menu.create')->with([
 				'title'=>'Меню',
-				'parents'=>Menu::all(),
+				'categories'=>$this->menu->get(['title']),
+				'positions'=>$this->menu->getPosition(),
 			]);
 	}
 
@@ -43,30 +44,11 @@ class AdminMenuController extends Controller
 	* @param  \Illuminate\Http\Request  $request
 	* @return \Illuminate\Http\Response
 	*/
-	public function store(Request $request) //по нажатию на кнопку Create данные отправятся в метод
+	public function store(MenuRequest $request) //по нажатию на кнопку Create данные отправятся в этот метод
 	{
-
-		$messages    = [
-			'title.required' => 'Поле заголовок меню обязательно к заполнению',
-			'max' => 'Максимально :attribute',
-		];
-
-		$rules       = [
-			'title' => 'required|max:255',
-			'url' => 'required|max:255|'//unique:menus,url',
-		];
-
-		$this->validate($request, $rules, $messages);
-
-		$requestData = $request->all();
-
-		if(isset($requestData['published'])){
-			$requestData['published'] = 1;
-		}
-
-		Menu::create($requestData);
+		Menu::create($request->all());
 		return redirect(route('menus.index'))->with('message','Пункт меню добавлен');
-		
+
 	}
 
 	/**
@@ -88,12 +70,12 @@ class AdminMenuController extends Controller
 	*/
 	public function edit($id) //создаем страницу редактирования записи
 	{
-		$menu = Menu::find($id);
-		//dd('Заголовок меню - '.$menu->title.' Родитель - '.$menu->parentRecord->title);
+
 		return view('admin.menu.edit')->with([
 				'title'=>'Редактирование Меню',
-				'viewdata' => $menu,
+				'viewdata' => $this->menu->getDataMenuEditForm($id),
 			]);
+
 	}
 
 	/**
@@ -103,9 +85,12 @@ class AdminMenuController extends Controller
 	* @param  int  $id
 	* @return \Illuminate\Http\Response
 	*/
-	public function update(Request $request, $id) //по нажатию на кнопку Edit данные отправятся в метод
+	public function update($id, MenuRequest $request) //по нажатию на кнопку Edit данные отправятся в метод
 	{
-		//
+		$menu=$this->menu->find($id);
+		$menu->update($request->all());
+		$menu->save();
+		return redirect(route('menus.index'))->with('message',"Пункт $menu->title изменен");
 	}
 
 	/**

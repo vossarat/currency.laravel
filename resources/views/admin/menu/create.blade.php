@@ -17,11 +17,20 @@
 					{{ csrf_field() }}
 
 					@include('admin.menu.form')
-					
+
+					<div class="form-group">
+						<div class="col-md-6 col-md-offset-4">
+							<button type="submit" class="btn btn-primary">
+								Добавить
+							</button>
+						</div>
+					</div>
+
 				</form>
 			</div>
 		</div>
 	</div>
 
 </div> {{-- end content --}}
+
 @endsection

@@ -42,6 +42,10 @@ body {
   }
 }
 
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */

@@ -7,34 +7,54 @@ use App\User;
 
 class Menu extends Model
 {
-    protected $fillable = [
-        'title',
-        'url',
-        'icon',
-        'published',
-        'weight',
-        'position',
-        //'parent',
-    ];
+	protected $fillable = [
+		'title',
+		'url',
+		'icon',
+		'published',
+		'weight',
+		'position',
+		'category',
+	];
 
-    public function getMenuById($id){
-        return $this->id($id)->get();
-    }
+	/*Создание рекурсивной связи для категории*/
+	public function parentMenu()
+	{
+		return $this->hasOne('App\Menu', 'id', 'category');
+	}
 
-    public function getMenuIdByTitle($title){
-        return $this->title($title)->first()->id;
-    }
 
-    public function ScopeTitle($query, $title){
-        $query->where('title','=', $title);
-    }
+	public static function getMenuIdByTitle($title)
+	{
+		return self::where('title','=',$title)->first()->id;
+	}
 
-    public function ScopeId($query, $id){
-        $query->where('id','=', $id);
-    }
-    
-    public function parentRecord(){
-        return $this->hasOne('App\Menu', 'id', 'parent_id');
-    }
+
+	public function getDataMenuEditForm($id)
+	{
+		$dataMenuEditForm = $this->find($id);
+		$dataMenuEditForm['category'] = $this->find($id)->parentMenu->title;
+		$dataMenuEditForm['categories'] = $this->get(['title']);
+		$dataMenuEditForm['positions'] = $this->getPosition();
+		return $dataMenuEditForm ;
+
+	}
+	
+	public function ScopePublished($query){
+		return $query->where('published', 1);
+	}
+	
+	public function ScopePosition($query, $position){
+		return $query->where('position', '=', $position);
+	}
+
+	public function getPosition()
+	{
+		return [
+			'topmenu',
+			'sidebar',
+			'adminmenu',
+		];
+	}
 
 }
