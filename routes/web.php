@@ -16,7 +16,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', ['uses'=>'DefaultController@index','as'=>'main']);
+Route::get('/', 'DefaultController@index')->name('main');
+Route::get('testpage', 'DefaultController@testpage')->name('testpage');
 
 //Административная панель
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){

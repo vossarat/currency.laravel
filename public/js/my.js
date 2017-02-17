@@ -1,5 +1,2 @@
-$("#wrapper").click(function(e)	{
-	//console.log('click');
-		e.preventDefault();
-		$("#wrapper").toggleClass("toggled");
-	});
+$("#sidebar").toggleClass("collapsed");
+$("#content").toggleClass("col-md-12 col-md-9");

@@ -14,4 +14,8 @@ class DefaultController extends Controller
     	$contentMainPage = MainPage::content();
 		return view('default.index')->with(['content' => $contentMainPage]);		
 	}
+	
+	public function testpage() {    	
+    	return view('testpage.index');		
+	}
 }
