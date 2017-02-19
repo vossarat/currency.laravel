@@ -33,7 +33,7 @@
     $(document).ready(function () {
             $(".navbar-brand").click(function () {
                     $("#sidebar").toggleClass("collapsed");
-                    $("#content").toggleClass("col-xs-12 col-xs-9 col-xs-offset-3");
+                    $("#content").toggleClass("col-xs-12 col-xs-10 col-xs-offset-2");
 
                     return false;
                 });

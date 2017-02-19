@@ -20,3 +20,19 @@
 		</div>
 	</div>
 </div> {{-- end dashboard top menu --}}
+
+@push('scripts')
+<script>
+	$(document).ready(function ()
+		{
+			$(".navbar-brand").click(function ()
+				{
+					$.post("/admin/collapsed", {'_token':"{{ csrf_token() }}" } );
+					$(".sidebar").toggleClass("collapsed");
+					$(".content").toggleClass("col-xs-12 col-xs-10 col-xs-offset-2");
+
+					return false;
+				});
+		});
+</script>
+@endpush

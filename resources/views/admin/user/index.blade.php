@@ -1,9 +1,9 @@
 @extends('admin.layouts.template')
 
 @section('content')
-<h1 class="page-header">Меню</h1>
+<h1 class="page-header">Пользователи</h1>
 
-<form action="{{ route('menus.create') }}">
+<form action="{{ route('users.create') }}">
     <div class="form-group">
         <button type="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-plus"></i></button>
@@ -22,26 +22,28 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Заголовок меню</th>
-                <th>Адрес</th>
+                <th>Имя пользователя</th>
+                <th>Логин</th>
+                <th>e-mail</th>
                 <th>Действие</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($viewdata as $menu)
+            @foreach($viewdata as $user)
             <tr>
-                <td>{{ $menu->id }}</td>
-                <td>{{ $menu->title }}</td>
-                <td>{{ $menu->url }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->login }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
-                    <form action="{{ route('menus.destroy', $menu->id) }}" method="POST">
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         {{ csrf_field() }}
                         <button type="submit" class="btn-action"><i class="glyphicon glyphicon-remove"></i></button>
                     </form>
                 </td>
                 <td>
-                <form action="{{ route('menus.edit', $menu->id) }}">
+                <form action="{{ route('users.edit', $user->id) }}">
                 	<button type="submit" class="btn-action"><i class="glyphicon glyphicon-edit"></i></button>
                 </form>  
                 </td>

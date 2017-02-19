@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cookie;
 use App\MainPage;
 use App\Menu;
 
@@ -15,7 +16,4 @@ class DefaultController extends Controller
 		return view('default.index')->with(['content' => $contentMainPage]);		
 	}
 	
-	public function testpage() {    	
-    	return view('testpage.index');		
-	}
 }

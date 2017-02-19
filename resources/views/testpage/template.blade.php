@@ -42,12 +42,12 @@
             <div class="row-fluid" id="row-main">
 
                 @section('sidebar')
-                <div class="col-xs-3" id="sidebar">
+                <div class="col-xs-2" id="sidebar">
                     @include('testpage.sidebar')
                 </div>
                 @show
 
-                <div class="col-xs-9 col-xs-offset-3" id="content">
+                <div class="col-xs-10 col-xs-offset-2" id="content">
                     @yield('content')
                 </div>
 

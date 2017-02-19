@@ -42,6 +42,7 @@ class MenuRequest extends FormRequest
         $input = parent::all();
         $input['weight'] = (int) $input['weight']; //weight поля из string в int
         $input['published'] = isset($input['published']) ? 1 : 0; // field published
+        $input['is_category'] = isset($input['is_category']) ? 1 : 0; // field is_category
         $input['category'] = Menu::getMenuIdByTitle($input['category']); // изменим input title категории меню на его id 
         return $input;
     }

@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="">	
 		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
 		<title>
@@ -16,6 +16,10 @@
 
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		
+		<!-- additional CSS -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/menu.css') }}" />		
 
 
 		<!-- Custom styles for this template -->
@@ -31,21 +35,28 @@
 	</head>
 
 	<body>
-
+	
 		@section('navbar')
-		@include('admin.layouts.navbar')
-		@show
+        	@include('admin.layouts.navbar')
+        @show
 
-		<div class="container-fluid">
-			<div class="row">
-				@section('sidebar')
-				@include('admin.layouts.sidebar')
-				@show
+        <div class="container-fluid">
 
-				@yield('content')
-			</div>
-		</div>
+            <div class="row-fluid">
 
+                @section('sidebar')
+                	<div class="{{ Cookie::has('collapsed') ? 'sidebar col-xs-2 collapsed': 'sidebar col-xs-2' }}">
+                    	@include('admin.layouts.sidebar')
+                    </div>
+                @show
+				
+				<div class="{{ Cookie::has('collapsed') ? 'content col-xs-12': 'content col-xs-10 col-xs-offset-2' }}">
+                    @yield('content')
+                </div>
+               
+
+            </div>
+        </div>
 
 		<!-- Bootstrap core JavaScript
 		================================================== -->

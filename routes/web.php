@@ -17,23 +17,24 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/', 'DefaultController@index')->name('main');
-Route::get('testpage', 'DefaultController@testpage')->name('testpage');
 
 //Административная панель
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
 
-        Route::get('/', 'AdminController@index')->name('admin');
+		Route::get('/', 'AdminDashboardController@index')->name('adminpanel');
 
-        // Registration Routes...
-        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'Auth\RegisterController@register');
+		// Registration Routes...
+		Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+		Route::post('register', 'Auth\RegisterController@register');
+
+		Route::resource('menus','AdminMenuController'); // resource conroller for menu
+		Route::resource('users','AdminUserController'); // resource conroller for user
+
+		Route::post('collapsed', function() { //устанавливаем cookie для определени видимости sidebar adminpanel				
+				Cookie::has('collapsed') ? Cookie::queue(Cookie::forget('collapsed')) : Cookie::queue('collapsed', true, 60);		
+			});
 		
-		Route::get('users', 'AdminController@tableUsers')->name('users');
-		Route::get('users/edit/{id}', 'AdminController@editUser');
-		
-		Route::resource('menus','AdminMenuController'); // resource conroller for menu 
-		
-		
-    });
+
+	});
 
 

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'login', 'email', 'password',
     ];
 
     /**
@@ -26,15 +26,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
-    protected $table = 'users';
-    
-    public function editUser($id) {
-		$viewdata = $this->table()->all();
-		return $viewdata;
-	}
-	
-	public function getUser(){
-		return User::all();
-	}
+   
 }

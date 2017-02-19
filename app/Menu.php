@@ -15,6 +15,7 @@ class Menu extends Model
 		'weight',
 		'position',
 		'category',
+		'is_category',
 	];
 
 	/*Создание рекурсивной связи для категории*/
@@ -34,7 +35,7 @@ class Menu extends Model
 	{
 		$dataMenuEditForm = $this->find($id);
 		$dataMenuEditForm['category'] = $this->find($id)->parentMenu->title;
-		$dataMenuEditForm['categories'] = $this->get(['title']);
+		$dataMenuEditForm['categories'] = $this->categories()->get();
 		$dataMenuEditForm['positions'] = $this->getPosition();
 		return $dataMenuEditForm ;
 
@@ -46,6 +47,10 @@ class Menu extends Model
 	
 	public function ScopePosition($query, $position){
 		return $query->where('position', '=', $position);
+	}
+	
+	public function ScopeCategories($query){
+		return $query->where('is_category', '=', 1);
 	}
 
 	public function getPosition()
