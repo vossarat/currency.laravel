@@ -5,10 +5,10 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Register
+				Register1
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/register') }}">
+				<form class="form-horizontal" role="form" method="POST" action="{{ route('postreg') }}">
 					{{ csrf_field() }}
 
 					<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

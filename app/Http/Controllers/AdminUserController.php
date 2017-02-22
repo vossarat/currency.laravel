@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class AdminUserController extends Controller
@@ -40,12 +41,12 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        User::create($request->all());
-		return redirect(route('users.index'))->with('message','Пользователь добавлен');
+        User::create($request->all());        
+		return redirect(route('users.index'))->with('message','Пользователь добавлен');											 
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -64,8 +65,11 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        dd(__METHOD__);
+    {    	
+        return view('admin.user.edit')->with([
+				'title'=>'Редактирование пользователя',
+				'viewdata' => $this->user->find($id),
+			]);
     }
 
     /**
@@ -75,9 +79,12 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        dd(__METHOD__);
+        $user = $this->user->find($id);
+		$user->update($request->all());
+		$user->save();
+		return redirect(route('users.index'))->with('message',"Информация по пользователю $user->name изменена");
     }
 
     /**
@@ -88,6 +95,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $user = $this->user->find($id);
+		$user->delete();
+		return back()->with('message', "Пользователь $user->name удален");
     }
 }

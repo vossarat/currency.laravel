@@ -2,7 +2,7 @@
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
 
 	<div class="col-md-6">
-		<input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required >
+		<input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}" required >
 
 		@if ($errors->has('name'))
 		<span class="help-block">
@@ -18,7 +18,7 @@
 	<label for="login" class="col-md-4 control-label">Логин</label>
 
 	<div class="col-md-6">
-		<input id="login" type="text" class="form-control" name="login" value="{{ old('login') }}" required >
+		<input id="login" type="text" class="form-control" name="login" value="{{ $viewdata->login or old('login') }}" >
 
 		@if ($errors->has('login'))
 		<span class="help-block">
@@ -34,7 +34,7 @@
 	<label for="email" class="col-md-4 control-label">E-Mail</label>
 
 	<div class="col-md-6">
-		<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+		<input id="email" type="email" class="form-control" name="email" value="{{ $viewdata->email or old('email') }}" >
 
 		@if ($errors->has('email'))
 		<span class="help-block">
@@ -50,7 +50,7 @@
 	<label for="password" class="col-md-4 control-label">Пароль</label>
 
 	<div class="col-md-6">
-		<input id="password" type="password" class="form-control" name="password" required>
+		<input id="password" type="password" class="form-control" name="password" >
 
 		@if ($errors->has('password'))
 		<span class="help-block">
@@ -66,6 +66,6 @@
 	<label for="password-confirm" class="col-md-4 control-label">Повторите пароль</label>
 
 	<div class="col-md-6">
-		<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+		<input id="password-confirm" type="password" class="form-control" name="password_confirmation" >
 	</div>
 </div>

@@ -8,17 +8,18 @@
 	<div class="panel panel-default">
 
 		<div class="panel-heading">
-			Добавить пользователя
+			Редактировать пользователя
 			<a href="{{ route('users.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
 		</div>
 
 		<div class="panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.store') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.update', $viewdata->id ) }}">
 				{{ csrf_field() }}
-				
-				@include('admin.user.form_tab_1')
 
-				{{-- <div class="form-group">
+				<input type="hidden" name="id" value="{{ $viewdata->id }}">
+				<input type="hidden" name="_method" value="put"/>
+
+				<div class="form-group">
 
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#login" data-toggle="tab">Логин</a></li>
@@ -36,11 +37,11 @@
 					<div class="{{ $errors->has('test') ? 'tab-pane active fade in': 'tab-pane fade'}}" id="profile">
 						@include('admin.user.form_tab_2')
 					</div>
-				</div> --}}
+				</div>
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-4">
-						<button type="submit" class="btn btn-primary">Добавить</button>
+						<button type="submit" class="btn btn-primary">Редактировать</button>
 					</div>
 				</div>
 			</form>

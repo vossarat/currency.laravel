@@ -7,7 +7,7 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading"> {{-- заголовок окна --}}
-            Edit Пункты меню
+            Редактирование пункта меню
             <a href="{{ route('menus.index') }}" class="close" data-dismiss="alert" aria-hidden="true">&times;</a> {{-- х закрыть --}}
         </div>
 

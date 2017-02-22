@@ -19,13 +19,15 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'DefaultController@index')->name('main');
 
 //Административная панель
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
+Route::group(['prefix'=>'admin', 
+				//'middleware'=>'auth'
+				],	function() {
 
 		Route::get('/', 'AdminDashboardController@index')->name('adminpanel');
 
 		// Registration Routes...
 		Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-		Route::post('register', 'Auth\RegisterController@register');
+		Route::post('register', 'Auth\RegisterController@register')->name('postreg');
 
 		Route::resource('menus','AdminMenuController'); // resource conroller for menu
 		Route::resource('users','AdminUserController'); // resource conroller for user
