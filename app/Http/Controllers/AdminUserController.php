@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\OfficeRequest;
 use App\User;
+use App\City;
+use App\Office;
 
 class AdminUserController extends Controller
 {
-	public function __construct(User $user)
+	public function __construct(User $user, City $city)
 	{
 		$this->user = $user;
+		$this->city = $city;
 	}
     /**
      * Display a listing of the resource.
@@ -32,6 +36,7 @@ class AdminUserController extends Controller
     {
         return view('admin.user.create')->with([
 				'title'=>'Пользователь',
+				'cities' => $this->city->all(),
 			]);
     }
 
@@ -41,10 +46,20 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(OfficeRequest $request)
     {
-        User::create($request->all());        
-		return redirect(route('users.index'))->with('message','Пользователь добавлен');											 
+
+    	$data = $request->all();
+
+    	$addUser = User::create([
+				'name' => $data['name'],
+				'login' => $data['login'],
+				'email' => $data['email'],
+				'password' => bcrypt($data['password']) ,
+			]);
+		
+		$addUser->office()->create($request->all());
+		return redirect(route('users.index'))->with('message', 'Добавлен');											 
     }
     
     /**
@@ -55,7 +70,7 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        dd(__METHOD__);
+		//
     }
 
     /**
@@ -66,9 +81,12 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {    	
+        dd($this->user->find($id)->office()->parent());
         return view('admin.user.edit')->with([
 				'title'=>'Редактирование пользователя',
 				'viewdata' => $this->user->find($id),
+				//'viewdata' => $this->user->find($id),
+				
 			]);
     }
 
@@ -83,6 +101,7 @@ class AdminUserController extends Controller
     {
         $user = $this->user->find($id);
 		$user->update($request->all());
+		$user->password = bcrypt($request->password);		
 		$user->save();
 		return redirect(route('users.index'))->with('message',"Информация по пользователю $user->name изменена");
     }
@@ -96,7 +115,9 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         $user = $this->user->find($id);
+		$user->office()->delete();
 		$user->delete();
+		
 		return back()->with('message', "Пользователь $user->name удален");
     }
 }

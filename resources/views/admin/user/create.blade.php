@@ -16,9 +16,7 @@
 			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.store') }}">
 				{{ csrf_field() }}
 				
-				@include('admin.user.form_tab_1')
-
-				{{-- <div class="form-group">
+				<div class="form-group">
 
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#login" data-toggle="tab">Логин</a></li>
@@ -36,7 +34,7 @@
 					<div class="{{ $errors->has('test') ? 'tab-pane active fade in': 'tab-pane fade'}}" id="profile">
 						@include('admin.user.form_tab_2')
 					</div>
-				</div> --}}
+				</div>
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-4">

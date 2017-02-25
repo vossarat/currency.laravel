@@ -25,9 +25,9 @@ class UserRequest extends FormRequest
     public function rules(){
         return [
             'name' => 'required|max:255',
-            //'login' => 'required|max:50|unique:users,login,'.$this->id,
-            //'email' => 'required|email|max:255|unique:users,email,'.$this->id,
-            'password' => 'required|min:6', //'required|min:6|confirmed',
+            'login' => 'required|max:50|unique:users,login,'.$this->id,
+            'email' => 'required|email|max:255|unique:users,email,'.$this->id,
+            'password' => 'required|min:6|confirmed',
         ];
     }
     
@@ -42,8 +42,8 @@ class UserRequest extends FormRequest
     }
     
 
-    /*public function all(){
-    	$this->merge( array('password'=> bcrypt( $this->request->get('password') ) ) );
+/*    public function all() {
+    	$this->merge( array('password' => bcrypt( $this->request->get('password') ) ) );
         return $this->request->all();
     }*/
     
