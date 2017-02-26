@@ -2,7 +2,7 @@
 	<label for="fullname" class="col-md-4 control-label">Полное наименование</label>
 
 	<div class="col-md-6">
-		<input id="fullname" type="text" class="form-control" name="fullname" value="{{ old('fullname') }}"  >
+		<input id="fullname" type="text" class="form-control" name="fullname" value="{{ $view_office->fullname or old('fullname') }}"  >
 
 		@if ($errors->has('fullname'))
 		<span class="help-block">
@@ -14,29 +14,25 @@
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}"> {{-- citys field --}}
+<div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}"> {{-- city field --}}
 	<label for="city" class="col-md-4 control-label">Город</label>
 
 	<div class="col-md-6">
 		<select class="form-control" name="city" >
 
-			{{-- @if(isset($viewdata))
-
-			@foreach($viewdata->citys as $city) 
-				@if($city == $viewdata->city)
-					<option selected>{{ $viewdata->city }}</option>
-				@else
-					<option>{{ $city }}</option>
-				@endif
-			@endforeach
-
-			@else --}}
-				
 			@foreach($cities as $city)
-				<option>{{ $city->name }}</option>
+				
+				@if(isset($view_office))
+					@if($city->id == $view_office->city_id)
+						<option selected>{{ $city->name }}</option>
+					@else
+						<option>{{ $city->name }}</option>
+					@endif
+				@else
+					<option>{{ $city->name }}</option>
+				@endif
+				
 			@endforeach
-
-			{{--  @endif --}}
 
 		</select>
 		@if ($errors->has('city'))
@@ -47,13 +43,13 @@
 		</span>
 		@endif
 	</div>
-</div> {{-- end citys field --}}
+</div> {{-- end city field --}}
 
 <div class="form-group{{ $errors->has('geolocation') ? ' has-error' : '' }}">
 	<label for="geolocation" class="col-md-4 control-label">Геолокация</label>
 
 	<div class="col-md-6">
-		<input id="geolocation" type="text" class="form-control" name="geolocation" value="{{ old('geolocation') }}"  >
+		<input id="geolocation" type="text" class="form-control" name="geolocation" value="{{ $view_office->geolocation or old('geolocation') }}"  >
 
 		@if ($errors->has('geolocation'))
 		<span class="help-block">
@@ -69,7 +65,7 @@
 	<label for="image" class="col-md-4 control-label">Эмблема</label>
 
 	<div class="col-md-6">
-		<input id="image" type="text" class="form-control" name="image" value="{{ old('image') }}"  >
+		<input id="image" type="text" class="form-control" name="image" value="{{ $view_office->image or old('image') }}"  >
 
 		@if ($errors->has('image'))
 		<span class="help-block">
@@ -85,7 +81,7 @@
 	<label for="phone" class="col-md-4 control-label">Телефон</label>
 
 	<div class="col-md-6">
-		<input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}"  >
+		<input id="phone" type="text" class="form-control" name="phone" value="{{ $view_office->phone or old('phone') }}"  >
 
 		@if ($errors->has('phone'))
 		<span class="help-block">

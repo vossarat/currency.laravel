@@ -70,12 +70,12 @@ class AdminMenuController extends Controller
 	*/
 	public function edit($id) //создаем страницу редактирования записи
 	{
-
 		return view('admin.menu.edit')->with([
 				'title'=>'Редактирование Меню',
-				'viewdata' => $this->menu->getDataMenuEditForm($id),
+				'positions'=>$this->menu->getPosition(),
+				'categories'=>$this->menu->categories()->get(),
+				'viewdata' => $this->menu->find($id),
 			]);
-
 	}
 	
 	
@@ -88,8 +88,10 @@ class AdminMenuController extends Controller
 	*/
 	public function update($id, MenuRequest $request) //по нажатию на кнопку Edit данные отправятся в метод
 	{
+		dd($request->modifyRequest());
 		$menu=$this->menu->find($id);
-		$menu->update($request->all());
+		$menu->update($request->modifyRequest());
+		//$menu->update($request->all());
 		$menu->save();
 		return redirect(route('menus.index'))->with('message',"Пункт $menu->title изменен");
 	}

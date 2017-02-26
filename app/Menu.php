@@ -19,28 +19,11 @@ class Menu extends Model
 	];
 
 	/*Создание рекурсивной связи для категории*/
-	public function parentMenu()
+	public function category()
 	{
 		return $this->hasOne('App\Menu', 'id', 'category');
 	}
 
-
-	public static function getMenuIdByTitle($title)
-	{
-		return self::where('title','=',$title)->first()->id;
-	}
-
-
-	public function getDataMenuEditForm($id)
-	{
-		$dataMenuEditForm = $this->find($id);
-		$dataMenuEditForm['category'] = $this->find($id)->parentMenu->title;
-		$dataMenuEditForm['categories'] = $this->categories()->get();
-		$dataMenuEditForm['positions'] = $this->getPosition();
-		return $dataMenuEditForm ;
-
-	}
-	
 	public function ScopePublished($query){
 		return $query->where('published', 1);
 	}
@@ -55,11 +38,7 @@ class Menu extends Model
 
 	public function getPosition()
 	{
-		return [
-			'topmenu',
-			'sidebar',
-			'adminmenu',
-		];
+		return ['topmenu','sidebar','adminmenu',];
 	}
 
 }

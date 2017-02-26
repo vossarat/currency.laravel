@@ -85,24 +85,19 @@
 	<div class="col-md-6">
 		<select class="form-control" name="position" >
 
-			@if(isset($viewdata))
-
-			@foreach($viewdata->positions as $position) 
-				@if($position == $viewdata->position)
-					<option selected>{{ $viewdata->position }}</option>
-				@else
+			@foreach($positions as $position)
+				@if(isset($viewdata))
+					@if($viewdata->position == $position)
+						<option selected>{{ $viewdata->position }}</option>
+					@else
+						<option>{{ $position }}</option>
+					@endif						
+				@else				
 					<option>{{ $position }}</option>
 				@endif
 			@endforeach
-
-			@else
-				
-			@foreach($positions as $position)
-				<option>{{ $position }}</option>
-			@endforeach
-
-			@endif
-
+			
+			
 		</select>
 		@if ($errors->has('position'))
 		<span class="help-block">
@@ -120,23 +115,19 @@
 	<div class="col-md-6">
 
 		<select class="form-control" name="category" >
-			@if(isset($viewdata))
-
-				@foreach($viewdata->categories as $category) {{-- title сохраненной категории --}}
-						@if($category->title == $viewdata->category)
-							<option selected>{{ $viewdata->category }}</option>
-						@else
-							<option>{{ $category->title }}</option>
-						@endif
-				@endforeach
-
-			@else
-
-				@foreach($categories as $category)
+		
+			@foreach($categories as $category)
+				@if(isset($viewdata))
+					@if($viewdata->category == $category->id)
+						<option selected>{{ $category->title }}</option>
+					@else
+						<option>{{ $category->title }}</option>
+					@endif						
+				@else				
 					<option>{{ $category->title }}</option>
-				@endforeach
-
-			@endif
+				@endif
+			@endforeach
+			
 		</select>
 
 		@if ($errors->has('category'))

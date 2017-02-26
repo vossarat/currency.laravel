@@ -13,10 +13,10 @@
 		</div>
 
 		<div class="panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.update', $viewdata->id ) }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.update', $view_user->id ) }}">
 				{{ csrf_field() }}
 
-				<input type="hidden" name="id" value="{{ $viewdata->id }}">
+				<input type="hidden" name="id" value="{{ $view_user->id }}">
 				<input type="hidden" name="_method" value="put"/>
 
 				<div class="form-group">
@@ -29,12 +29,10 @@
 				</div>
 
 				<div class="tab-content">
-
-					<div class="{{ $errors->has('test') ? 'tab-pane fade': 'tab-pane active fade in'}}" id="login">
+					<div class="tab-pane active fade in" id="login">
 						@include('admin.user.form_tab_1')
 					</div>
-
-					<div class="{{ $errors->has('test') ? 'tab-pane active fade in': 'tab-pane fade'}}" id="profile">
+					<div class="tab-pane fade" id="profile">
 						@include('admin.user.form_tab_2')
 					</div>
 				</div>

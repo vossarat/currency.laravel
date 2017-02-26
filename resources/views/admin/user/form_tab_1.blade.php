@@ -2,7 +2,7 @@
 	<label for="name" class="col-md-4 control-label">Имя пользователя</label>
 
 	<div class="col-md-6">
-		<input id="name" type="text" class="form-control" name="name" value="{{ $viewdata->name or old('name') }}" required >
+		<input id="name" type="text" class="form-control" name="name" value="{{ $view_user->name or old('name') }}" required >
 
 		@if ($errors->has('name'))
 		<span class="help-block">
@@ -18,7 +18,7 @@
 	<label for="login" class="col-md-4 control-label">Логин</label>
 
 	<div class="col-md-6">
-		<input id="login" type="text" class="form-control" name="login" value="{{ $viewdata->login or old('login') }}" >
+		<input id="login" type="text" class="form-control" name="login" value="{{ $view_user->login or old('login') }}" >
 
 		@if ($errors->has('login'))
 		<span class="help-block">
@@ -34,7 +34,7 @@
 	<label for="email" class="col-md-4 control-label">E-Mail</label>
 
 	<div class="col-md-6">
-		<input id="email" type="email" class="form-control" name="email" value="{{ $viewdata->email or old('email') }}" >
+		<input id="email" type="email" class="form-control" name="email" value="{{ $view_user->email or old('email') }}" >
 
 		@if ($errors->has('email'))
 		<span class="help-block">

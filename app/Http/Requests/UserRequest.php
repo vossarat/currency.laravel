@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Validator;
+use App\City;
 
 class UserRequest extends FormRequest
 {
@@ -25,9 +25,13 @@ class UserRequest extends FormRequest
     public function rules(){
         return [
             'name' => 'required|max:255',
+            
             'login' => 'required|max:50|unique:users,login,'.$this->id,
             'email' => 'required|email|max:255|unique:users,email,'.$this->id,
             'password' => 'required|min:6|confirmed',
+            'fullname' => 'required|max:255',
+            'image' => 'required|max:255',
+            'phone' => 'required|max:255',
         ];
     }
     
@@ -41,10 +45,17 @@ class UserRequest extends FormRequest
         ];
     }
     
+    public function modifyRequest($attribute = NULL)
+	{
+		$city = City::where('name', $this->request->get('city'))->first();
+		$this->merge( array('city_id'=> $city->id ) ) ;
+		
+		if($attribute) {
+			return $this->request->all();
+		}   
+		return $this->only('fullname','city_id','phone','geolocation','image');
+	}
 
-/*    public function all() {
-    	$this->merge( array('password' => bcrypt( $this->request->get('password') ) ) );
-        return $this->request->all();
-    }*/
-    
+
+   
 }

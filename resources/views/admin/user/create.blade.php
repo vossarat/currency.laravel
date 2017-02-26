@@ -26,12 +26,10 @@
 				</div>
 
 				<div class="tab-content">
-
-					<div class="{{ $errors->has('test') ? 'tab-pane fade': 'tab-pane active fade in'}}" id="login">
+					<div class="tab-pane active fade in" id="login">
 						@include('admin.user.form_tab_1')
 					</div>
-
-					<div class="{{ $errors->has('test') ? 'tab-pane active fade in': 'tab-pane fade'}}" id="profile">
+					<div class="tab-pane fade" id="profile">
 						@include('admin.user.form_tab_2')
 					</div>
 				</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\OfficeRequest;
 use App\User;
@@ -11,6 +12,7 @@ use App\Office;
 
 class AdminUserController extends Controller
 {
+	
 	public function __construct(User $user, City $city)
 	{
 		$this->user = $user;
@@ -46,20 +48,15 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OfficeRequest $request)
+    public function store(UserRequest $request)
     {
-
-    	$data = $request->all();
-
-    	$addUser = User::create([
-				'name' => $data['name'],
-				'login' => $data['login'],
-				'email' => $data['email'],
-				'password' => bcrypt($data['password']) ,
-			]);
+		$addUser = $this->user->create($request->modifyRequest('all'));
 		
-		$addUser->office()->create($request->all());
-		return redirect(route('users.index'))->with('message', 'Добавлен');											 
+		$addUser->password = bcrypt($request->password);
+		$addUser->save();
+		
+		$addUser->office()->create($request->modifyRequest('all'));
+		return redirect(route('users.index'))->with('message', "Пользователь $addUser->name добавлен");
     }
     
     /**
@@ -80,13 +77,13 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {    	
-        dd($this->user->find($id)->office()->parent());
+    {  
+	    	
         return view('admin.user.edit')->with([
 				'title'=>'Редактирование пользователя',
-				'viewdata' => $this->user->find($id),
-				//'viewdata' => $this->user->find($id),
-				
+				'view_user' => $this->user->find($id),
+				'view_office' => $this->user->find($id)->office()->first(),
+				'cities' => $this->city->all(),				
 			]);
     }
 
@@ -99,9 +96,13 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+    	     
         $user = $this->user->find($id);
-		$user->update($request->all());
+		$user->update($request->modifyRequest('all'));
+
+		$user->office()->update($request->modifyRequest());
 		$user->password = bcrypt($request->password);		
+
 		$user->save();
 		return redirect(route('users.index'))->with('message',"Информация по пользователю $user->name изменена");
     }
@@ -116,8 +117,7 @@ class AdminUserController extends Controller
     {
         $user = $this->user->find($id);
 		$user->office()->delete();
-		$user->delete();
-		
+		$user->delete();		
 		return back()->with('message', "Пользователь $user->name удален");
     }
 }
