@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> {{-- default template --}}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -15,6 +15,8 @@
         <!-- Styles -->
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
 
     </head>
     <body>
@@ -26,7 +28,7 @@
                 @show
             </div>
 
-            <div class="row">
+            <div class="row-fluid">
                 @yield('content')
             </div>
 
@@ -37,7 +39,6 @@
             </div>
 
         </div>
-        </div>
 
 
 
@@ -45,7 +46,7 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>        
         @stack('scripts')
 
     </body>

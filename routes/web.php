@@ -17,6 +17,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/', 'DefaultController@index')->name('main');
+//Route::get('testjson', 'DefaultController@testjson')->name('testjson');
 
 //Административная панель
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
