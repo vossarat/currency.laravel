@@ -17,31 +17,20 @@ class DefaultController extends Controller
 
 	public function index(){
 		$viewdata = $this->contentPage->getJsonData();
+		
+		foreach($viewdata as $key => $item){
+			
+			$viewdata[$key]['currency'][] = $this->contentPage->getArray();	
+					
+		}
+		
+	
 		$viewUniqueCurrency = $this->contentPage->getUniqueCurrency($viewdata);
 		return view('default.index')->with([
-				'viewdata' => $viewdata,
+				'viewdata' => json_decode(json_encode($viewdata)),
 				'viewUniqueCurrency' => $viewUniqueCurrency,
 			]);
 
 	}
-
-	/*public function testjson()
-	{
-	return Response::json(
-	["data" => [
-	[
-	"USD",
-	"307",
-	"310",
-	],
-	[
-	"EUR",
-	"327",
-	"330",
-	],
-	]]
-	);
-
-	}*/
 
 }

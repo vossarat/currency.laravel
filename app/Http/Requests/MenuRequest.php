@@ -38,27 +38,12 @@ class MenuRequest extends FormRequest
         ];
     }
 
-    /*public function all(){ // преобразуем request для сохранения данных
-        $input = parent::all();
-        $input['weight'] = (int) $input['weight']; //weight поля из string в int
-        $input['published'] = isset($input['published']) ? 1 : 0; // field published
-        $input['is_category'] = isset($input['is_category']) ? 1 : 0; // field is_category
-        $input['category'] = Menu::getMenuIdByTitle($input['category']); // изменим input title категории меню на его id 
-        return $input;
-    }*/
-    
+   
     public function modifyRequest(){ // преобразуем request для сохранения данных
         
         $this->merge(array('weight'=>(int) $this->request->get('weight')));
         $this->merge(array('published'=>$this->request->has('published')? 1 : 0));
         $this->merge(array('is_category'=>$this->request->has('is_category')? 1 : 0));
-        //$this->merge(array('category'=>$this->request->has('is_category')? 1 : 0));
-        
-        /*$input = parent::all();
-        $input['weight'] = (int) $input['weight']; //weight поля из string в int
-        $input['published'] = isset($input['published']) ? 1 : 0; // field published
-        $input['is_category'] = isset($input['is_category']) ? 1 : 0; // field is_category
-        $input['category'] = Menu::getMenuIdByTitle($input['category']); // изменим input title категории меню на его id */
         return $this->request->all();
     }
 

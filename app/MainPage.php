@@ -10,19 +10,26 @@ class MainPage extends Model
 
 	public function getJsonData(){
 		$json = file_get_contents($this->jsonUrl);
-		$jsonData = json_decode($json);
-		dd($jsonData);
-		return $jsonData;		
+		$jsonData = json_decode($json, true);
+		return $jsonData;
 	}
-	
+
 	public function getUniqueCurrency($jsonData){
-		foreach($jsonData as $item){
-			foreach($item->currency as $currency){
+		foreach(json_decode(json_encode($jsonData)) as $item)
+		{
+			foreach($item->currency as $currency)
+			{
 				$nameCurrency[] = $currency->code;
 			}
 		}
 
 		$uniqueCurrency = collect($nameCurrency)->unique()->all();
 		return $uniqueCurrency;
+	}
+
+	public function getArray(){
+		
+		return ['code'=>'XXX', 'buy'=>'0', 'sell'=>'0'];
+
 	}
 }
