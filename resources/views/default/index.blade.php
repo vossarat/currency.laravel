@@ -17,13 +17,13 @@
 				<th rowspan="2">Название</th>
 
 				@foreach($viewUniqueCurrency as $nameCurrency)
-				@break($loop->index > 2)
+				{{-- @break($loop->index > 2) --}}
 				<th colspan="2">{{ $nameCurrency }}</th>
 				@endforeach
 			</tr>
 			<tr>
 				@foreach($viewUniqueCurrency as $nameCurrency)
-				@break($loop->index > 2)
+				{{-- @break($loop->index > 2) --}}
 				<th>Покупка</th>
 				<th>Продажа</th>
 
@@ -41,7 +41,7 @@
 			<tr>
 				<td style="text-align: left;">{{ $content->name }}</td>
 				@foreach($content->currency as $currency)
-				@break($loop->index > 2)
+				{{-- @break($loop->index > 2) --}}
 				<td>{{ $currency->buy }} </td>
 				<td>{{ $currency->sell }} </td>
 				@endforeach

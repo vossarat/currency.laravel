@@ -16,19 +16,14 @@ class DefaultController extends Controller
 	}
 
 	public function index(){
-		$viewdata = $this->contentPage->getJsonData();
+		$jsonData = $this->contentPage->getJsonData();
+		$uniqueCurrency = $this->contentPage->getUniqueCurrency($jsonData);		
 		
-		foreach($viewdata as $key => $item){
-			
-			$viewdata[$key]['currency'][] = $this->contentPage->getArray();	
-					
-		}
+		$allCurrency = $this->contentPage->allCurrency($jsonData, $uniqueCurrency);		
 		
-	
-		$viewUniqueCurrency = $this->contentPage->getUniqueCurrency($viewdata);
 		return view('default.index')->with([
-				'viewdata' => json_decode(json_encode($viewdata)),
-				'viewUniqueCurrency' => $viewUniqueCurrency,
+				'viewdata' => (object)$allCurrency,
+				'viewUniqueCurrency' => $uniqueCurrency,
 			]);
 
 	}
