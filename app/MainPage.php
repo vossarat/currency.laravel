@@ -6,48 +6,58 @@ use Illuminate\Database\Eloquent\Model;
 
 class MainPage extends Model
 {
-    private $jsonUrl = "http://37.150.124.26:3012";
+	private $jsonUrl = "http://37.150.124.26:3012";
 
-    public function getJsonData()
-    {
-        $json     = file_get_contents($this->jsonUrl);
-        $jsonData = collect(json_decode($json, true));
-        return $jsonData;
-    }
+	public function getCurrencyJsonData()
+	{
+		$jsonData = file_get_contents($this->jsonUrl);
+		$currencyJsonData = json_decode($jsonData);
+		return $currencyJsonData;
+	}
 
 
-    public function getUniqueCurrency($jsonData)
-    {
+	public function getCurrencyUniqueName($currencyJsonData)
+	{
 
-        foreach ($jsonData as $item)
-        {
-            foreach ($item->currency as $currency)
-            {
-                $nameCurrency[] = $currency->code;
-            }
-        }
+		foreach ($currencyJsonData as $item)
+		{
+			foreach ($item->currency as $currency)
+			{
+				$currencyName[] = $currency->code;
+			}
+		}
 
-        $uniqueCurrency = collect($nameCurrency)->unique()->all();
-        return $uniqueCurrency;
-    }
+		$currencyUniqueName = collect($currencyName)->unique()->sort()->all();
+		return $currencyUniqueName;
+	}
 
-    //добавляем пустые курсы, чтоб получить все возможные валюты
-    public function allCurrency($jsonData, $currencyUnique)
-    {
-        foreach ($jsonData as $key => $item) {
-            $currencyCollections        = collect($item->currency);
-            $implodeCurrencyCollections = $currencyCollections->implode('code','-');
-            $implodeCurrencyCollections = explode('-', $implodeCurrencyCollections);
-            $diff                       = collect($currencyUnique)->diff($implodeCurrencyCollections);
+	//function добавляем пустые курсы, чтоб получить все возможные валюты
+	public function getCurrencyAll($currencyJsonData, $currencyUniqueName) 
+	{
+		//поиск разницы между текущими данными и всеми возможными видами валютам 
+		foreach ($currencyJsonData as $key => $item)
+		{
+			$currencyCollections = collect($item->currency);
+			$implodeCurrencyCollections = $currencyCollections->implode('code','-');
+			$implodeCurrencyCollections = explode('-', $implodeCurrencyCollections);
+			$diff = collect($currencyUniqueName)->diff($implodeCurrencyCollections);
 
-            foreach ($diff as $currencyName)
-            {
-                $jsonData[$key]->currency[] = (object)['code'=>$currencyName, 'buy'=>0, 'sell'=>0];
-            }
+			foreach ($diff as $currencyName)
+			{
+				$currencyJsonData[$key]->currency[] = (object)['code'=>$currencyName, 'buy'=> '-', 'sell'=> '-'];
+			}
 
-        }
-        
-        return $jsonData;
+		}
 
-    }
+		foreach ($currencyJsonData as $key => $item)
+		{
+			usort($currencyJsonData[$key]->currency, function($a, $b)
+				{
+					return $a->code <=> $b->code;
+				});
+		}
+
+		return $currencyJsonData;
+
+	}
 }

@@ -17,7 +17,7 @@ class ComposerViewProvider extends ServiceProvider
     */
     public function boot()
     {
-        View::composer('default.layouts.top_menu', 'App\Http\Composers\TopMenuComposer');
+        View::composer('default.layouts.navbar', 'App\Http\Composers\NavbarComposer');
         View::composer('default.layouts.footer', 'App\Http\Composers\FooterComposer');
         View::composer('admin.layouts.sidebar', 'App\Http\Composers\SidebarComposer');
     }

@@ -1,4 +1,4 @@
-<nav role="navigation" class="navbar navbar-default">
+<nav id="default-navbar" class="navbar navbar-default" role="navigation" >
 	<div class="navbar-header">
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
 			<span class="sr-only">Toggle navigation</span>

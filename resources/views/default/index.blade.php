@@ -8,29 +8,41 @@
 
 @section('content')
 
-<button>Name3</button>
-
 <div class="table-responsive">
-	<table id="example" class="table table-striped">
+	<table id="currencyViewTable" class="table table-striped" width="100%">
 		<thead>
 			<tr>
-				<th rowspan="2">Название</th>
+				<th class="hidden column-office-name" rowspan="2">Обменный пункт</th>
 
-				@foreach($viewUniqueCurrency as $nameCurrency)
-				{{-- @break($loop->index > 2) --}}
-				<th colspan="2">{{ $nameCurrency }}</th>
-				@endforeach
+				@for($i=1; $i<=3; $i++)
+				<th colspan="2" class="{{ $i>1 ? 'hidden-xs' : '' }}">
+					<select class="form-control" id="select-currency-column-{{ $i }}">
+						@foreach($viewUniqueCurrency as $currencyName)
+						@if($i==1 and $currencyName == 'USD')
+						<option selected>USD</option>
+						@elseif($i==2 and $currencyName == 'RUB')
+						<option selected>RUB</option>
+						@elseif($i==3 and $currencyName == 'EUR')
+						<option selected>EUR</option>
+						@else
+						<option>{{ $currencyName }}</option>
+						@endif
+						@endforeach
+					</select>
+				</th>
+				@endfor
+
 			</tr>
+
 			<tr>
-				@foreach($viewUniqueCurrency as $nameCurrency)
-				{{-- @break($loop->index > 2) --}}
-				<th>Покупка</th>
-				<th>Продажа</th>
 
+				@for($i=1; $i<=3; $i++)
+				@foreach($viewUniqueCurrency as $currencyName)
+				<th class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currencyName }}">Покупка</th>
+				<th class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currencyName }}">Продажа</th>
 				@endforeach
+				@endfor
 			</tr>
-
-
 		</thead>
 
 
@@ -39,12 +51,15 @@
 			@foreach($viewdata as $content)
 
 			<tr>
-				<td style="text-align: left;">{{ $content->name }}</td>
+				<td class="hidden column-office-name" style="text-align: left;">{{ $content->name }}</td>
+
+				@for($i=1; $i<=3; $i++)
 				@foreach($content->currency as $currency)
-				{{-- @break($loop->index > 2) --}}
-				<td>{{ $currency->buy }} </td>
-				<td>{{ $currency->sell }} </td>
+				<td class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currency->code }}">{{ $currency->buy }} </td>
+				<td class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currency->code }}">{{ $currency->sell }} </td>
 				@endforeach
+				@endfor
+
 			</tr>
 
 			@endforeach
@@ -56,23 +71,51 @@
 @push('scripts')
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.colReorder.min.js') }}"></script>
 <script>
 	$(document).ready(function()
 		{
-			var table = $('#example').DataTable(
+			$('#currentpage').val('1');
+			var currentpage = $('#currentpage').val();
+
+			var table = $('#currencyViewTable').DataTable(
 				{
-					"paging":   false,
+					"paging":  false,
 					searching: false,
-					"info":     false
+					"info":    false,
+
+				});
+			$('.column-office-name').removeClass('hidden');
+			$('.column-currency-1-USD').removeClass('hidden');
+			$('.column-currency-2-RUB').removeClass('hidden');
+			$('.column-currency-3-EUR').removeClass('hidden');
+			
+			var currencyViewTableHeight = $('#currencyViewTable').height();
+				$('#sidebarDefault').height(currencyViewTableHeight);
+
+
+			$("#select-currency-column-1").on("change", function()
+				{
+					$('[class*="column-currency-1"]').addClass('hidden');
+					$('.column-currency-1-'+this.value).removeClass('hidden');
 				});
 
-
-			$('button').on( 'click', function (e)
+			$("#select-currency-column-2").on("change", function()
 				{
+					$('[class*="column-currency-2"]').addClass('hidden');
+					$('.column-currency-2-'+this.value).removeClass('hidden');
+				});
 
-				} );
+			$("#select-currency-column-3").on("change", function()
+				{
+					$('[class*="column-currency-3"]').addClass('hidden');
+					$('.column-currency-3-'+this.value).removeClass('hidden');
+				});
+				
+			
 		});
 </script>
+
 @endpush
 
 @endsection

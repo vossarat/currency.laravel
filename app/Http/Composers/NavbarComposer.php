@@ -4,7 +4,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Users\Repository as UserRepository;
 use App\Menu;
 
-class TopMenuComposer
+class NavbarComposer
 {
 	public function __construct(Menu $menu)
 	{

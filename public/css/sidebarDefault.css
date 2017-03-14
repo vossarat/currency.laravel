@@ -1,0 +1,14 @@
+.navbar, .panel, .table.dataTable {
+  margin: 0 !important;
+  border-radius: 0px !important;
+}
+
+#sidebarDefault {
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background-color: blue
+}
+
+
