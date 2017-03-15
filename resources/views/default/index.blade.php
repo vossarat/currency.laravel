@@ -91,7 +91,7 @@
 			$('.column-currency-3-EUR').removeClass('hidden');
 			
 			var currencyViewTableHeight = $('#currencyViewTable').height();
-				$('#sidebarDefault').height(currencyViewTableHeight);
+				$('#currencyViewTable').height(currencyViewTableHeight);
 
 
 			$("#select-currency-column-1").on("change", function()

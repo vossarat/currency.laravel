@@ -88,10 +88,8 @@ class AdminMenuController extends Controller
 	*/
 	public function update($id, MenuRequest $request) //по нажатию на кнопку Edit данные отправятся в метод
 	{
-		dd($request->modifyRequest());
 		$menu=$this->menu->find($id);
 		$menu->update($request->modifyRequest());
-		//$menu->update($request->all());
 		$menu->save();
 		return redirect(route('menus.index'))->with('message',"Пункт $menu->title изменен");
 	}

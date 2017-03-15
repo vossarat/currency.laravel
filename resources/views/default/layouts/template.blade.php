@@ -1,4 +1,5 @@
-<!DOCTYPE html> {{-- default template --}}
+{{-- Default template view --}}
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -22,34 +23,19 @@
 
 	</head>
 	<body>
-	
+
 		<div class="container-fluid">
 			<div class="row">
 				@section('navbar')
-				@include('default.layouts.navbar')
+					@include('default.layouts.navbar')
 				@show
 			</div>
 
-			<div class="row">			
-			
-				<div id="sidebarDefault" class="hidden-xs col-sm-3">
-					@section('sidebar')
-			        	@include('default.layouts.sidebar')
-			        @show
-					
-				</div>
-
-				<div class="col-sm-9">
-					<div class="row">
-						@yield('content')
-					</div>
-				</div>
-
-			</div>
+			@yield('content')
 
 			<div class="row">
 				@section('footer')
-				@include('default.layouts.footer')
+					@include('default.layouts.footer')
 				@show
 			</div>
 

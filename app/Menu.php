@@ -38,7 +38,7 @@ class Menu extends Model
 
 	public function getPosition()
 	{
-		return ['topmenu','sidebar','adminmenu',];
+		return ['topmenu','admin-sidebar','default-sidebar','adminmenu',];
 	}
 
 }

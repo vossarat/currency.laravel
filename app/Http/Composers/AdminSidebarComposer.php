@@ -4,7 +4,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Users\Repository as UserRepository;
 use App\Menu;
 
-class SidebarComposer
+class AdminSidebarComposer
 {
 	public function __construct(Menu $menu)
 	{
@@ -13,7 +13,7 @@ class SidebarComposer
 
 	public function compose(View $view)
 	{
-		$viewdata = $this->menu->published()->position('sidebar')->orderBy('weight')->get();
+		$viewdata = $this->menu->published()->position('admin-sidebar')->orderBy('weight')->get();
 		$view->with('viewdata', $viewdata);
 	}
 }

@@ -40,10 +40,13 @@ class MenuRequest extends FormRequest
 
    
     public function modifyRequest(){ // преобразуем request для сохранения данных
+    
+    	$menu = Menu::where('title', $this->request->get('category'))->first();
         
         $this->merge(array('weight'=>(int) $this->request->get('weight')));
         $this->merge(array('published'=>$this->request->has('published')? 1 : 0));
         $this->merge(array('is_category'=>$this->request->has('is_category')? 1 : 0));
+        $this->merge(array('category'=>$menu->id));
         return $this->request->all();
     }
 

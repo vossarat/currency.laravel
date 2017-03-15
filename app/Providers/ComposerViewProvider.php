@@ -19,7 +19,8 @@ class ComposerViewProvider extends ServiceProvider
     {
         View::composer('default.layouts.navbar', 'App\Http\Composers\NavbarComposer');
         View::composer('default.layouts.footer', 'App\Http\Composers\FooterComposer');
-        View::composer('admin.layouts.sidebar', 'App\Http\Composers\SidebarComposer');
+        View::composer('admin.layouts.sidebar', 'App\Http\Composers\AdminSidebarComposer');
+        View::composer('default.layouts.sidebar', 'App\Http\Composers\DefaultSidebarComposer');
     }
 
     /**
