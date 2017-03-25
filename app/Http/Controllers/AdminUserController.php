@@ -52,10 +52,9 @@ class AdminUserController extends Controller
     {
 		$addUser = $this->user->create($request->modifyRequest('all'));
 		
-		$addUser->password = bcrypt($request->password);
-		$addUser->save();
-		
+		$addUser->password = bcrypt($request->password);		
 		$addUser->office()->create($request->modifyRequest('all'));
+		$addUser->save();
 		return redirect(route('users.index'))->with('message', "Пользователь $addUser->name добавлен");
     }
     
@@ -77,13 +76,13 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {  
-	    	
+    {   	
         return view('admin.user.edit')->with([
 				'title'=>'Редактирование пользователя',
 				'view_user' => $this->user->find($id),
 				'view_office' => $this->user->find($id)->office()->first(),
-				'cities' => $this->city->all(),				
+				'cities' => $this->city->all(),	
+				'browseFiles'=>$this->user->getFilesForBrowse(),			
 			]);
     }
 
@@ -96,7 +95,8 @@ class AdminUserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-    	     
+    	
+   	     
         $user = $this->user->find($id);
 		$user->update($request->modifyRequest('all'));
 

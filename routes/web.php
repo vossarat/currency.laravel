@@ -15,9 +15,11 @@
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// End Auth Routes...
 
 Route::get('/', 'DefaultController@index')->name('main');
-//Route::get('testjson', 'DefaultController@testjson')->name('testjson');
+Route::get('/office', 'DefaultController@OfficePage')->name('office');
+Route::get('/currency-all', 'DefaultController@index')->name('currency-all');
 
 //Административная панель
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
@@ -35,7 +37,19 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
 				Cookie::has('collapsed') ? Cookie::queue(Cookie::forget('collapsed')) : Cookie::queue('collapsed', true, 60);		
 			});
 		
-
+		Route::post('send','FileUploadController@send');
+		Route::get('send','FileUploadController@viewFormSend');
+		
+		
+		Route::get('upload','ImageController@browse');
+		Route::post('upload','ImageController@upload')->name('upload');
+		
+		/*Route::get('image-upload','ImageController@browse');
+		Route::get('postaction','ImageController@getpostaction');
+		Route::post('postaction','ImageController@postaction');
+		Route::post('image-upload','ImageController@imageUploadPost')->name('image-upload');
+		Route::get('upload/delete/{filename}', 'ImageController@delete');*/	
+		
 	});
 
 

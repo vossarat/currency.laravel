@@ -1,0 +1,101 @@
+body {
+	background-color: #002E52;
+	color: white;
+}
+
+/*Форма*/
+label {
+	color: black;
+}
+
+/*Иконка topmenu*/
+img.img-nav  {
+	width: 16px;
+	vertical-align: text-top;
+}
+
+/*Лого*/
+img.logo {
+	height: 3em;
+	vertical-align: text-top;
+	float: left;
+	margin: 5px;
+}
+
+/*Иконка валюты страны*/
+img.currency-icon {
+	height: 64px;	
+}
+
+/*Удалить border адаптивной таблицы*/
+.table-responsive {
+	border: 0px;
+}
+
+.footer {
+	color: black;
+}
+
+/*Информация об одной валюте для всех экранов*/
+.one-currency-info {
+	background-color: grey;
+	margin-bottom: 2em;
+	border-radius: 2em;	
+	padding-top: 5px;
+	padding-bottom: 5px;	
+}
+		.one-currency-info-title {
+			font-size: 3em;
+		}
+		.one-currency-info-description {
+			font-size: 4em;
+		}
+		.one-currency-info-change {
+			font-size: 2.6em;
+		}
+		.one-currency-info-pubDate {
+			font-size: 1.8em;
+		}
+		/*Класс цвета изменения величины курса*/
+		.UP {
+			color: green;
+		}
+		.DOWN {
+			color: red;
+		}	
+
+		/*Дополнение стиля информации об одной валюте для смартфона*/
+		@media (max-width: 768px) {
+			    .one-currency-info-title {
+					font-size: 1.5em;
+				}
+				.one-currency-info-description {
+					font-size: 2em;
+				}
+				.one-currency-info-change {
+					font-size: 1.3em;
+				}
+				.one-currency-info-pubDate {
+					font-size: 0.9em;
+				}
+		}
+	
+
+
+/*строка в которой можно центрировать по вертикали ячейку*/
+.row-for-middle {
+  	display: table;
+  	/*width: 100%;*/
+  	/* fix overflow */
+  	table-layout: fixed;
+}
+
+/*отцентрованная ячейка*/
+.col-middle {
+	display: table-cell;
+  	float: none !important;
+  	vertical-align: middle;
+}
+
+
+	

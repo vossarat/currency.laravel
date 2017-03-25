@@ -6,17 +6,19 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="#" class="navbar-brand">КВ</a>
+		<img src="/images/app1x.png" class="logo"><a href="/" class="navbar-brand">Курсы валют</a>
 	</div>
 	<!-- Collection of nav links and other content for toggling -->
 	<div id="navbarCollapse" class="collapse navbar-collapse">
+		<div class="col-md-offset-2">
 		<ul class="nav navbar-nav">
 			@foreach($viewdata as $menu)
 			<li>
-				<a href="{{ $menu->url }}">{{ $menu->title }}</a>
+				<a href="{{ $menu->url }}"><img src="/images/{{ $menu->icon }}" class="img-nav"><big>&nbsp;&nbsp;{{ $menu->title }}</big></a>
 			</li>
 			@endforeach
 		</ul>
+		</div>
 
 
 

@@ -2,32 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Cookie;
-use Response;
 use App\MainPage;
-use App\Menu;
+use Request;
+use App\OfficePage;
+use App\Currency;
+
 
 class DefaultController extends Controller
 {
 
-	public function __construct(MainPage $contentPage){
-		$this->contentPage = $contentPage;
+	public function __construct(MainPage $mainPage, OfficePage $officePage){
+		$this->mainPage = $mainPage;
+		$this->officePage = $officePage;
 	}
 
-	public function index(){
+	public function index(Currency $currencyData) //+ данные о валюте из Eloquiment Currency
+	{ 
 
-		$currencyJsonData = $this->contentPage->getCurrencyJsonData();
-		
-		$currencyUniqueName = $this->contentPage->getCurrencyUniqueName($currencyJsonData);		
-		
-		$currencyAll = $this->contentPage->getCurrencyAll($currencyJsonData, $currencyUniqueName);		
+		$currencyNationalBankData = $this->mainPage->getCurrencyNationalBankData()->channel->item;
 		
 		return view('default.index')->with([
+				'viewdata' => $currencyNationalBankData,
+				'currencyData' => $currencyData->all(),
+				'USD' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'USD'),
+				'EUR' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'EUR'),
+				'RUB' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'RUB'),
+			]);
+
+	}
+	
+	public function OfficePage(){
+		
+		$currencyJsonData = $this->officePage->getCurrencyJsonData();		
+		
+		$currencyUniqueName = $this->officePage->getCurrencyUniqueName($currencyJsonData);		
+		
+		$currencyAll = $this->officePage->getCurrencyAll($currencyJsonData, $currencyUniqueName);
+		
+
+		return view('default.office')->with([
 				'viewdata' => (object)$currencyAll,
 				'viewUniqueCurrency' => $currencyUniqueName,
 			]);
-
+	}
+	
+	public function sendFile(Request $request)
+	{
+		return $request;
+		//$request->image->move(storage_path('app/public/logotips'), $request->image->getClientOriginalName());
+		//return 'ok';
+		//return back();		
 	}
 
 }

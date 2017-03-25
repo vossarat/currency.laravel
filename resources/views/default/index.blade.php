@@ -1,125 +1,66 @@
 @extends('default.layouts.template')
 
-@section('title', 'Main Page')
-
-@section('top_menu')
-@parent
-@endsection
+@section('title', 'Курсы валют НБ РК')
 
 @section('content')
 
-<div class="table-responsive">
-	<table id="currencyViewTable" class="table table-striped" width="100%">
-		<thead>
-			<tr>
-				<th class="hidden column-office-name" rowspan="2">Обменный пункт</th>
+<div class="row-fluid hidden-xs"> {{-- строка информации по основным валютам --}}
 
-				@for($i=1; $i<=3; $i++)
-				<th colspan="2" class="{{ $i>1 ? 'hidden-xs' : '' }}">
-					<select class="form-control" id="select-currency-column-{{ $i }}">
-						@foreach($viewUniqueCurrency as $currencyName)
-						@if($i==1 and $currencyName == 'USD')
-						<option selected>USD</option>
-						@elseif($i==2 and $currencyName == 'RUB')
-						<option selected>RUB</option>
-						@elseif($i==3 and $currencyName == 'EUR')
-						<option selected>EUR</option>
-						@else
-						<option>{{ $currencyName }}</option>
-						@endif
-						@endforeach
-					</select>
-				</th>
-				@endfor
+	@foreach([$USD, $EUR, $RUB] as $currencyBase)
+	<div class="col-xs-12 col-sm-4"> {{-- разделить на 3 части --}}
+		<div class="row"> {{-- строка нужна для создания отступов между блоками информации --}}
+			<div class="col-xs-10 col-xs-offset-1"> {{-- отступы между блоками --}}
+				<div class="row one-currency-info row-for-middle"> {{-- разделим иконку флага валюты и информацией о курсе --}}
+					<div class="col-xs-5 col-middle"> {{-- иконка флага --}}
+						<img src="/images/icon/{{ $currencyBase->title . '.PNG' }}" class="img-responsive">
+					</div>
+					{{-- строки информации о курсе --}}
+					<div class="row text-center one-currency-info-title">{{ $currencyBase->title }} 1 = </div>
+					<div class="row text-center one-currency-info-description">{{ $currencyBase->description}} ⍑</div>
+					<div class="row text-center one-currency-info-change">{{ $currencyBase->change}} {{$currencyBase->index=='UP' ?'&#8593;' : '&#8595;'}}</div>
+					<div class="row text-center one-currency-info-pubDate"><i>&nbsp;&nbsp;&nbsp{{ $currencyBase->pubDate }}</i></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	@endforeach
 
-			</tr>
-
-			<tr>
-
-				@for($i=1; $i<=3; $i++)
-				@foreach($viewUniqueCurrency as $currencyName)
-				<th class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currencyName }}">Покупка</th>
-				<th class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currencyName }}">Продажа</th>
-				@endforeach
-				@endfor
-			</tr>
-		</thead>
+</div>
 
 
+<div class="row-fluid">
+	<table class="table">
 		<tbody>
-
-			@foreach($viewdata as $content)
-
+			@foreach($viewdata as $currency)
 			<tr>
-				<td class="hidden column-office-name" style="text-align: left;">{{ $content->name }}</td>
-
-				@for($i=1; $i<=3; $i++)
-				@foreach($content->currency as $currency)
-				<td class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currency->code }}">{{ $currency->buy }} </td>
-				<td class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currency->code }}">{{ $currency->sell }} </td>
-				@endforeach
-				@endfor
+				<div class="row">
+					<td>
+							<div class="col-xs-3 col-sm-2 col-sm-offset-2 text-right">
+								{{ $currency->title }}
+								<img src="/images/icon/{{ $currency->title.'.PNG' }}" class="currency-icon">
+							</div>
+							
+							<div class="col-xs-6 col-sm-2 text-left">
+								@foreach($currencyData as $oneCurrencyInfo)
+									@if($currency->title == $oneCurrencyInfo->title)									
+										<p>{{ "1 $oneCurrencyInfo->symbol =  $currency->description" }} ⍑</p>
+										<p>{{ $oneCurrencyInfo->rusname}}</p>
+									@endif					
+								@endforeach
+							</div>
+							
+							<div class="col-xs-3 col-sm-3">
+								<p>{{ $currency->change }}</p>
+								<i>{{ $currency->pubDate }}</i>
+							</div>					
+					</td>	
+				</div>
+				
 
 			</tr>
-
 			@endforeach
-
 		</tbody>
 	</table>
 </div>
 
-@push('scripts')
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.colReorder.min.js') }}"></script>
-<script>
-	$(document).ready(function()
-		{
-			$('#currentpage').val('1');
-			var currentpage = $('#currentpage').val();
-
-			var table = $('#currencyViewTable').DataTable(
-				{
-					"paging":  false,
-					searching: false,
-					"info":    false,
-
-				});
-			$('.column-office-name').removeClass('hidden');
-			$('.column-currency-1-USD').removeClass('hidden');
-			$('.column-currency-2-RUB').removeClass('hidden');
-			$('.column-currency-3-EUR').removeClass('hidden');
-			
-			var currencyViewTableHeight = $('#currencyViewTable').height();
-				$('#currencyViewTable').height(currencyViewTableHeight);
-
-
-			$("#select-currency-column-1").on("change", function()
-				{
-					$('[class*="column-currency-1"]').addClass('hidden');
-					$('.column-currency-1-'+this.value).removeClass('hidden');
-				});
-
-			$("#select-currency-column-2").on("change", function()
-				{
-					$('[class*="column-currency-2"]').addClass('hidden');
-					$('.column-currency-2-'+this.value).removeClass('hidden');
-				});
-
-			$("#select-currency-column-3").on("change", function()
-				{
-					$('[class*="column-currency-3"]').addClass('hidden');
-					$('.column-currency-3-'+this.value).removeClass('hidden');
-				});
-				
-			
-		});
-</script>
-
-@endpush
-
-@endsection
-
-@section('footer')
-@parent
 @endsection

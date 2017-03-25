@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Storage;
 use App\Office;
 
 class User extends Authenticatable
@@ -32,5 +33,12 @@ class User extends Authenticatable
 	public function office()
 	{
 		return $this->hasOne('App\Office');
+	}
+	
+	public function getFilesForBrowse()
+	{
+		$disk = Storage::disk('logotips');
+		$allFiles = $disk->allFiles();
+		return $allFiles;
 	}
 }

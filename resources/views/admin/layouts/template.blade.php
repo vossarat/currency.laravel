@@ -21,7 +21,6 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/menu.css') }}" />		
 
-
 		<!-- Custom styles for this template -->
 
 		<!-- Just for debugging purposes. Don't actually copy this line! -->

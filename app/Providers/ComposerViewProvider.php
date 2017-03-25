@@ -21,6 +21,7 @@ class ComposerViewProvider extends ServiceProvider
         View::composer('default.layouts.footer', 'App\Http\Composers\FooterComposer');
         View::composer('admin.layouts.sidebar', 'App\Http\Composers\AdminSidebarComposer');
         View::composer('default.layouts.sidebar', 'App\Http\Composers\DefaultSidebarComposer');
+        View::composer('admin.user.logoselect', 'App\Http\Composers\AdminLogoSelectComposer');
     }
 
     /**

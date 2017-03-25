@@ -21,17 +21,17 @@
 		<select class="form-control" name="city" >
 
 			@foreach($cities as $city)
-				
-				@if(isset($view_office))
-					@if($city->id == $view_office->city_id)
-						<option selected>{{ $city->name }}</option>
-					@else
-						<option>{{ $city->name }}</option>
-					@endif
-				@else
-					<option>{{ $city->name }}</option>
-				@endif
-				
+
+			@if(isset($view_office))
+			@if($city->id == $view_office->city_id)
+			<option selected>{{ $city->name }}</option>
+			@else
+			<option>{{ $city->name }}</option>
+			@endif
+			@else
+			<option>{{ $city->name }}</option>
+			@endif
+
 			@endforeach
 
 		</select>
@@ -61,19 +61,13 @@
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-	<label for="image" class="col-md-4 control-label">Эмблема</label>
-
-	<div class="col-md-6">
-		<input id="image" type="text" class="form-control" name="image" value="{{ $view_office->image or old('image') }}"  >
-
-		@if ($errors->has('image'))
-		<span class="help-block">
-			<strong>
-				{{ $errors->first('image') }}
-			</strong>
-		</span>
-		@endif
+<div class="form-group">
+	<label for="image" class="col-md-4 control-label">Логотип</label>
+	<input type="hidden" id="image" class="form-control" name="image" value="{{ $view_office->image or old('image') }}"  >
+	<div class="col-md-6 logotip-show">
+		<img src="/storage/logotips/{{ $view_office->image or old('image') }}">
+		
+		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#logo_browse">...</button>
 	</div>
 </div>
 
@@ -92,3 +86,5 @@
 		@endif
 	</div>
 </div>
+
+@include('admin.user.logo_browse')

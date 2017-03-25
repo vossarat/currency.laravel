@@ -1,5 +1,4 @@
-{{-- Default template view --}}
-<!DOCTYPE html> 
+<!DOCTYPE html> {{-- Default template view --}}
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -8,7 +7,7 @@
 
 		<title>
 			@section('title')
-			{{ $title or 'КВ' }}
+			{{ $title or 'Курсы валют' }}
 			@show
 
 		</title>
@@ -19,7 +18,7 @@
 		<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/sidebarDefault.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/default.css') }}">
 
 	</head>
 	<body>
@@ -31,9 +30,12 @@
 				@show
 			</div>
 
-			@yield('content')
-
 			<div class="row">
+				@yield('content')
+			</div>
+			
+
+			<div class="row footer">
 				@section('footer')
 					@include('default.layouts.footer')
 				@show

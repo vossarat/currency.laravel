@@ -112,3 +112,11 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+/* отображение логотипов в logo_browse */
+.logo-select {
+    position: relative;
+    max-height: 235px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
