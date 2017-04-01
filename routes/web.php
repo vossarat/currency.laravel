@@ -27,8 +27,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
 		Route::get('/', 'AdminDashboardController@index')->name('adminpanel');
 
 		// Registration Routes...
-		Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-		Route::post('register', 'Auth\RegisterController@register')->name('postregister');
+		//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+		//Route::post('register', 'Auth\RegisterController@register')->name('postregister');
 
 		Route::resource('menus','AdminMenuController'); // resource conroller for menu
 		Route::resource('users','AdminUserController'); // resource conroller for user
@@ -37,19 +37,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
 				Cookie::has('collapsed') ? Cookie::queue(Cookie::forget('collapsed')) : Cookie::queue('collapsed', true, 60);		
 			});
 		
-		Route::post('send','FileUploadController@send');
-		Route::get('send','FileUploadController@viewFormSend');
-		
-		
-		Route::get('upload','ImageController@browse');
-		Route::post('upload','ImageController@upload')->name('upload');
-		
-		/*Route::get('image-upload','ImageController@browse');
-		Route::get('postaction','ImageController@getpostaction');
-		Route::post('postaction','ImageController@postaction');
-		Route::post('image-upload','ImageController@imageUploadPost')->name('image-upload');
-		Route::get('upload/delete/{filename}', 'ImageController@delete');*/	
-		
+		Route::post('upload','FileUploadController@upload');
+	
 	});
 
 

@@ -3,34 +3,32 @@
 @section('title', 'Обменные пункты')
 
 @section('content')
+
 <div class="table-responsive">
 	<table id="currencyViewTable" class="table" width="100%">
 		<thead>
 			<tr>
 				<th class="hidden column-office-name" rowspan="2">Обменный пункт</th>
-
 				@for($i=1; $i<=3; $i++)
 				<th colspan="2" class="{{ $i>1 ? 'hidden-xs' : '' }}">
 					<select class="form-control" id="select-currency-column-{{ $i }}">
 						@foreach($viewUniqueCurrency as $currencyName)
-						@if($i==1 and $currencyName == 'USD')
-						<option selected>USD</option>
-						@elseif($i==2 and $currencyName == 'RUB')
-						<option selected>RUB</option>
-						@elseif($i==3 and $currencyName == 'EUR')
-						<option selected>EUR</option>
-						@else
-						<option>{{ $currencyName }}</option>
-						@endif
+							@if($i==1 and $currencyName == 'USD')
+								<option data-iconurl="/images/icon/USD.PNG" selected>USD</option>
+							@elseif($i==2 and $currencyName == 'RUB')
+								<option data-iconurl="/images/icon/RUB.PNG" selected>RUB</option>
+							@elseif($i==3 and $currencyName == 'EUR')
+								<option data-iconurl="/images/icon/EUR.PNG" selected>EUR</option>
+							@else
+								<option data-iconurl="/images/icon/{{ $currencyName }}.PNG">{{ $currencyName }}</option>
+							@endif
 						@endforeach
 					</select>
 				</th>
 				@endfor
-
 			</tr>
 
 			<tr>
-
 				@for($i=1; $i<=3; $i++)
 				@foreach($viewUniqueCurrency as $currencyName)
 				<th class="{{ $i>1 ? 'hidden-xs' : '' }} hidden column-currency-{{ $i.'-'.$currencyName }}">Покупка</th>
@@ -46,7 +44,7 @@
 			@foreach($viewdata as $content)
 
 			<tr>
-				<td class="hidden column-office-name" style="text-align: left;">{{ $content->name }}</td>
+				<td class="hidden column-office-name"><img src="/storage/logotips/{{$content->name}}.png">{{ $content->name }}</td>
 
 				@for($i=1; $i<=3; $i++)
 				@foreach($content->currency as $currency)
@@ -72,43 +70,37 @@
 		{
 			$('#currentpage').val('1');
 			var currentpage = $('#currentpage').val();
-
 			var table = $('#currencyViewTable').DataTable(
 				{
 					"paging":  false,
 					searching: false,
 					"info":    false,
-
 				});
 			$('.column-office-name').removeClass('hidden');
 			$('.column-currency-1-USD').removeClass('hidden');
 			$('.column-currency-2-RUB').removeClass('hidden');
 			$('.column-currency-3-EUR').removeClass('hidden');
-
 			var currencyViewTableHeight = $('#currencyViewTable').height();
 			$('#currencyViewTable').height(currencyViewTableHeight);
-
-
 			$("#select-currency-column-1").on("change", function()
 				{
 					$('[class*="column-currency-1"]').addClass('hidden');
 					$('.column-currency-1-'+this.value).removeClass('hidden');
 				});
-
 			$("#select-currency-column-2").on("change", function()
 				{
 					$('[class*="column-currency-2"]').addClass('hidden');
 					$('.column-currency-2-'+this.value).removeClass('hidden');
 				});
-
 			$("#select-currency-column-3").on("change", function()
 				{
 					$('[class*="column-currency-3"]').addClass('hidden');
 					$('.column-currency-3-'+this.value).removeClass('hidden');
 				});
-
-
 		});
+			
+	    $("select").selectBoxIt();
+
 </script>
 @endpush
 @endsection

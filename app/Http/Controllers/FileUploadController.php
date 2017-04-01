@@ -7,7 +7,7 @@ use Storage;
 
 class FileUploadController extends Controller
 {
-	public function send(Request $request)
+	public function upload(Request $request)
 	{
 		$request->logotip->move(storage_path('app/public/logotips'), $request->logotip->getClientOriginalName());
 		return view('admin.user.logoselect');

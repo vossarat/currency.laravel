@@ -66,7 +66,6 @@
 	<input type="hidden" id="image" class="form-control" name="image" value="{{ $view_office->image or old('image') }}"  >
 	<div class="col-md-6 logotip-show">
 		<img src="/storage/logotips/{{ $view_office->image or old('image') }}">
-		
 		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#logo_browse">...</button>
 	</div>
 </div>

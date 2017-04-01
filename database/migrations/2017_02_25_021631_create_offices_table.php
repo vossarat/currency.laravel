@@ -19,7 +19,7 @@ class CreateOfficesTable extends Migration
             $table->string('fullname');            
             $table->string('geolocation',20);
             $table->string('image');
-            $table->string('phone',11);
+            $table->string('phone',12);
             
             $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')->references('id')->on('users');

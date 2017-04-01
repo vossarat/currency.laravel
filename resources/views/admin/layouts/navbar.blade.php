@@ -12,7 +12,6 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="{{ route('main') }}">MainPage</a></li>
-				<li><a href="{{ route('register') }}">Register</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

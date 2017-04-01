@@ -6,6 +6,7 @@ use App\MainPage;
 use Request;
 use App\OfficePage;
 use App\Currency;
+use Storage;
 
 
 class DefaultController extends Controller
@@ -16,29 +17,23 @@ class DefaultController extends Controller
 		$this->officePage = $officePage;
 	}
 
-	public function index(Currency $currencyData) //+ данные о валюте из Eloquiment Currency
-	{ 
-
-		$currencyNationalBankData = $this->mainPage->getCurrencyNationalBankData()->channel->item;
+	public function index(Currency $currencyData) //IndexPage + данные о валюте из Eloquiment Currency
+	{
 		
+		//dd(Storage::disk('logotips')->url('Altyn Bank.png'));
 		return view('default.index')->with([
-				'viewdata' => $currencyNationalBankData,
+				'viewdata' => $this->mainPage->getCurrencyNationalBankData(),
 				'currencyData' => $currencyData->all(),
-				'USD' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'USD'),
-				'EUR' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'EUR'),
-				'RUB' => $this->mainPage->getCurrencyInfo($currencyNationalBankData, 'RUB'),
 			]);
-
 	}
 	
-	public function OfficePage(){
+	public function OfficePage() // OfficePage
+	{
 		
-		$currencyJsonData = $this->officePage->getCurrencyJsonData();		
+		$currencyJsonData = $this->officePage->getCurrencyJsonData();
 		
-		$currencyUniqueName = $this->officePage->getCurrencyUniqueName($currencyJsonData);		
-		
+		$currencyUniqueName = $this->officePage->getCurrencyUniqueName($currencyJsonData);
 		$currencyAll = $this->officePage->getCurrencyAll($currencyJsonData, $currencyUniqueName);
-		
 
 		return view('default.office')->with([
 				'viewdata' => (object)$currencyAll,
@@ -46,12 +41,4 @@ class DefaultController extends Controller
 			]);
 	}
 	
-	public function sendFile(Request $request)
-	{
-		return $request;
-		//$request->image->move(storage_path('app/public/logotips'), $request->image->getClientOriginalName());
-		//return 'ok';
-		//return back();		
-	}
-
 }

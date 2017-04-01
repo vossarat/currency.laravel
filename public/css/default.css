@@ -1,5 +1,4 @@
 body {
-	background-color: #002E52;
 	color: white;
 }
 
@@ -32,8 +31,24 @@ img.currency-icon {
 	border: 0px;
 }
 
+.content {
+	padding-top: 20px;
+	background-color: #002E52;
+}
+
 .footer {
 	color: black;
+	
+}	
+	.footer > .panel {
+		margin-bottom: 0;
+	}
+	.footer a:focus, a:hover {
+    color: #F0B353;
+}
+
+#default-navbar{
+	margin-bottom: 0;
 }
 
 /*Информация об одной валюте для всех экранов*/
@@ -45,10 +60,10 @@ img.currency-icon {
 	padding-bottom: 5px;	
 }
 		.one-currency-info-title {
-			font-size: 3em;
+			font-size: 2.5em;
 		}
 		.one-currency-info-description {
-			font-size: 4em;
+			font-size: 3.2em;
 		}
 		.one-currency-info-change {
 			font-size: 2.6em;
@@ -80,7 +95,14 @@ img.currency-icon {
 				}
 		}
 	
-
+/*Строка имя пункта*/
+.column-office-name {
+	text-align: left;
+}
+	.column-office-name img {
+		height: 25px;
+	}
+/**********/
 
 /*строка в которой можно центрировать по вертикали ячейку*/
 .row-for-middle {
@@ -96,6 +118,5 @@ img.currency-icon {
   	float: none !important;
   	vertical-align: middle;
 }
-
 
 	

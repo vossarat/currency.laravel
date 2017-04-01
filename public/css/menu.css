@@ -16,7 +16,7 @@
     filter: alpha(opacity=50);
     opacity: .5
 }
-button.btn-action{
+.button. btn-action{
     -webkit-appearance: none;
     padding: 0;
     cursor: pointer;
