@@ -17,9 +17,14 @@
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 		
+		<!-- Include Font-Awesome -->
+		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">	
+		
 		<!-- additional CSS -->
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/menu.css') }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/menu.css') }}" />
+		
+			
 
 		<!-- Custom styles for this template -->
 

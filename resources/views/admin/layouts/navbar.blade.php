@@ -11,7 +11,10 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="{{ route('main') }}">MainPage</a></li>
+				<li><a href="{{ route('main') }}">
+						<i class="fa fa-home fa-2x"></i>
+					</a>
+				</li>
 			</ul>
 			<form class="navbar-form navbar-right">
 				<input type="text" class="form-control" placeholder="Search...">

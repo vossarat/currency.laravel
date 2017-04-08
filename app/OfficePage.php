@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfficePage extends Model
 {
-    private $jsonUrl = "http://37.150.124.26:3012";
+    private $jsonUrl = 'http://37.150.124.26:3012';
 
 	public function getCurrencyJsonData()
 	{

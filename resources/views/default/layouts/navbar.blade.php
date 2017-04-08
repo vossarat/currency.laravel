@@ -10,7 +10,7 @@
 	</div>
 	<!-- Collection of nav links and other content for toggling -->
 	<div id="navbarCollapse" class="collapse navbar-collapse">
-		<div class="col-md-offset-2">
+		<div class="col-md-offset-4">
 		<ul class="nav navbar-nav">
 			@foreach($viewdata as $menu)
 			<li>
@@ -24,7 +24,7 @@
 			<!-- Authentication Links -->
 			@if (Auth::guest())
 			<li>
-				<a href="{{ url('/login') }}"><i class="glyphicon glyphicon-lock"></i></a></li>
+				<a href="{{ url('/login') }}"><i class="glyphicon glyphicon-lock"></i><span class="hidden-lg"><big>&nbsp;&nbsp;Войти</big></span></a></li>
 			@else
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

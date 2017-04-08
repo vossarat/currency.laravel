@@ -19,26 +19,31 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/', 'DefaultController@index')->name('main');
 Route::get('/office', 'DefaultController@OfficePage')->name('office');
-Route::get('/currency-all', 'DefaultController@index')->name('currency-all');
+Route::get('/currency-all', 'DefaultController@currencyAll')->name('currency-all');
+Route::get('/resource', 'DefaultController@ResourcePage')->name('resource');
+
+/**
+* Временный проба парсера
+*/
+Route::get('/news', 'DefaultController@news')->name('news');
 
 //Административная панель
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'],	function() {
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'],
+    function(){
 
-		Route::get('/', 'AdminDashboardController@index')->name('adminpanel');
+        Route::get('/', 'AdminDashboardController@index')->name('adminpanel');
 
-		// Registration Routes...
-		//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-		//Route::post('register', 'Auth\RegisterController@register')->name('postregister');
+        Route::resource('menus','AdminMenuController'); // resource conroller for menu
+        Route::resource('users','AdminUserController'); // resource conroller for user
 
-		Route::resource('menus','AdminMenuController'); // resource conroller for menu
-		Route::resource('users','AdminUserController'); // resource conroller for user
+        Route::post('collapsed',
+            function(){
+                //устанавливаем cookie для определени видимости sidebar adminpanel
+                Cookie::has('collapsed') ? Cookie::queue(Cookie::forget('collapsed')) : Cookie::queue('collapsed', true, 60);
+            });
 
-		Route::post('collapsed', function() { //устанавливаем cookie для определени видимости sidebar adminpanel				
-				Cookie::has('collapsed') ? Cookie::queue(Cookie::forget('collapsed')) : Cookie::queue('collapsed', true, 60);		
-			});
-		
-		Route::post('upload','FileUploadController@upload');
-	
-	});
+        Route::post('upload','FileUploadController@upload');
+
+    });
 
 

@@ -14,12 +14,15 @@
 		<!-- Styles -->
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		
 		<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
 		<link rel="stylesheet" href="{{ asset('css/default.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+		
+		<!-- Include Font-Awesome -->
 		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	
 	</head>
