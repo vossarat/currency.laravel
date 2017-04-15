@@ -36,6 +36,7 @@ class DefaultController extends Controller
         return view('default.index')->with([
                 'viewdata' => $this->mainPage->getCurrencyNationalBankData(),
                 'currencyData' => $currencyData->all(),
+                'newsKase' => $this->news(),
             ]);
     }
 
@@ -97,22 +98,26 @@ class DefaultController extends Controller
         $html = file_get_contents('http://www.kase.kz');
         $crawler = new Crawler();
         $crawler->addContent($html);
-
-        $nodeValues = $crawler->filter('#kasenewstext')->filter('a')->each(
-            function (Crawler $node, $i)
-            {
-                return $node->html();
-            });
-        dd($nodeValues);
-
-
-        $myDom = $crawler->link(); //filter('a');
-        //dd( $myDom->count() );
-
-        foreach($myDom as $domElement)
-        {
-            dump($domElement);
-        }
+       
+        $attributes = $crawler
+		    ->filter('#kasenewstext')->filter('a')
+		    ->extract(array('_text', 'href'));		
+		
+		
+		foreach($attributes as $key => $attribute) {
+			
+			if($key > 9) {
+				break;
+			}
+			
+			$htmlOneNew = file_get_contents( 'http://www.kase.kz'.$attribute[1] );
+			$crawlerNew = new Crawler();
+			$crawlerNew->addContent($htmlOneNew);
+			
+			$attributes[$key][3] = $crawlerNew->filter('pre')->html();
+			
+		}
+		return $attributes;
     }
 
 }

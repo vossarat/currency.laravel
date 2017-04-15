@@ -168,6 +168,11 @@ return [
         /*
          * Package Service Providers...
          */
+         
+        /**
+		* Laravel Mobile Detect
+		*/
+        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
 
         //
 
@@ -230,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         //'Debugbar' => Barryvdh\Debugbar\Facade::class, // Laravel Debugbar - the facade to log messages
+        
+        'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class
 
     ],
 

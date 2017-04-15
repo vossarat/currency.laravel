@@ -94,6 +94,9 @@ img.currency-icon {
 					font-size: 0.9em;
 				}
 		}
+.news-kase-title {	
+	cursor: pointer;
+}
 	
 /****** officePage *******/
 /*Строка имя пункта*/
@@ -108,8 +111,12 @@ img.currency-icon {
 /*строка в которой можно центрировать по вертикали ячейку*/
 .row-for-middle {
   	display: table;
-  	/*width: 100%;*/
+  	width: 100%;
   	/* fix overflow */
+  	table-layout: fixed;
+}
+.row-for-middle-currency {
+  	display: table;
   	table-layout: fixed;
 }
 
@@ -119,6 +126,7 @@ img.currency-icon {
   	float: none !important;
   	vertical-align: middle;
 }
+
 /****** end OfficePage *******/
 
 /* ResourcePage */
@@ -139,4 +147,32 @@ img.currency-icon {
 		margin: -5px;
 		font-size : 1.3em;
 	}
+/*desktop version row currency view*/	
+.resource-price {
+	font-size: 2em;
+}
+.resource-description {
+	font-size: 1.1em;
+}
+.resource-change-down {
+	color: red;
+	font-size: 1.2em;	
+	font-weight: bolder;	
+	vertical-align: bottom;
+}
+.resource-change-up {
+	color: green;
+	font-size: 1.2em;	
+	font-weight: bolder;
+	vertical-align: top;
+}
 /****** end ResourcePage *******/
+
+/***** Footer ************/
+/*счетчик посещений*/
+#_zero_68336 {
+	margin-top: 20px;
+}
+
+
+
