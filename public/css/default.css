@@ -1,5 +1,5 @@
 body {
-	color: white;
+	color: #333;
 }
 
 /*Форма*/
@@ -33,7 +33,17 @@ img.currency-icon {
 
 .content {
 	padding-top: 20px;
-	background-color: #002E52;
+	background-color: #fafafa;
+}
+
+/*Дополнение стиля шрифта и фона для смартфона*/
+@media (max-width: 768px) {
+	    body {
+			color: white;
+		}
+		.content {
+			background-color: #002E52;
+		}
 }
 
 .footer {

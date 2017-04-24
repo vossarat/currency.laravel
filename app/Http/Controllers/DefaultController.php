@@ -36,7 +36,7 @@ class DefaultController extends Controller
         return view('default.index')->with([
                 'viewdata' => $this->mainPage->getCurrencyNationalBankData(),
                 'currencyData' => $currencyData->all(),
-                'newsKase' => $this->news(),
+                //'newsKase' => $this->news(), disable news KASE
             ]);
     }
 
@@ -96,6 +96,35 @@ class DefaultController extends Controller
     {
 
         $html = file_get_contents('http://www.kase.kz');
+        $crawler = new Crawler();
+        $crawler->addContent($html);
+       
+        $attributes = $crawler
+		    ->filter('#kasenewstext')->filter('a')
+		    ->extract(array('_text', 'href'));		
+		
+		
+		foreach($attributes as $key => $attribute) {
+			
+			if($key > 9) {
+				break;
+			}
+			
+			$htmlOneNew = file_get_contents( 'http://www.kase.kz'.$attribute[1] );
+			$crawlerNew = new Crawler();
+			$crawlerNew->addContent($htmlOneNew);
+			
+			$attributes[$key][3] = $crawlerNew->filter('pre')->html();
+			
+		}
+		return $attributes;
+    }
+    
+    public function newsProdengi()
+    {
+    	//https://prodengi.kz/lenta/
+
+        $html = file_get_contents('https://prodengi.kz/lenta/');
         $crawler = new Crawler();
         $crawler->addContent($html);
        
