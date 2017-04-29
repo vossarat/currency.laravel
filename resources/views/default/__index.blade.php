@@ -38,18 +38,22 @@
 
 <div class="row-fluid hidden-xs">
 	<div class="col-sm-8">
+		<table class="table">
+			<tbody>
 				@foreach($viewdata as $currency)
-					<div class="row">
-							<div class="col-sm-2 col-sm-offset-1 text-left">
+				<tr>
+					<div class="row-fluid">
+
+						<td>
+							<div class="col-sm-2 col-sm-offset-1">
 								{{ $currency->title }}
 								<img src="/images/icon/{{ $currency->title.'.PNG' }}" class="currency-icon">
 							</div>
 
 								@foreach($currencyData as $oneCurrencyInfo)
 									@if($currency->title == $oneCurrencyInfo->title)
-										<div class="col-sm-2">
+										<div class="col-sm-3 child">
 											{{ $oneCurrencyInfo->rusname}}
-											<img src="" class="currency-icon">
 										</div>
 										
 										<div class="col-sm-2 text-left">
@@ -66,13 +70,22 @@
 								</span>
 								<i>{{ $currency->pubDate }}</i>
 							</div>
+								
+								
+							
+						</td>
 					</div>
+
+
+				</tr>
 				@endforeach
+			</tbody>
+		</table>
+
 	</div>
 </div>
+
 @endsection
-
-
 {{-- disable news KASE
 <div class="hidden-xs">
 	<div class="row-fluid">
