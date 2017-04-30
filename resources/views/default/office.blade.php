@@ -1,3 +1,12 @@
+{{-- Include style --}}
+<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
+<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
+
+<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+<link rel="stylesheet" href="{{ asset('css/pages/office.css') }}"> 
+
 @extends('default.layouts.template')
 
 @section('title', 'Обменные пункты')

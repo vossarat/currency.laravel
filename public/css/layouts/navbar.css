@@ -1,0 +1,24 @@
+/*переопределим стиль navbar-bootstrap*/
+.navbar-default {
+    background-color: #FFF;
+    border-color: #e7e7e7;
+    margin-bottom: 0;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+/*Иконка topmenu*/
+img.img-nav  {
+	width: 16px;
+	vertical-align: text-top;
+}
+
+/*Лого*/
+img.logo {
+	height: 3em;
+	vertical-align: text-top;
+	float: left;
+	margin: 5px;
+}

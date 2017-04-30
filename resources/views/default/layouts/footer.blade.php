@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/layouts/footer.css') }}"> {{-- Include style --}}
+
 <div class="panel panel-default">
     <div class="col-xs-1" id="_zero_68336">
         <span>

@@ -1,5 +1,11 @@
+/*** All  Pages ***/
 body {
 	color: #333;
+}
+
+
+.content-currency-all {
+	background-color: #FFF;
 }
 
 /*Форма*/
@@ -7,23 +13,17 @@ label {
 	color: black;
 }
 
-/*Иконка topmenu*/
-img.img-nav  {
-	width: 16px;
-	vertical-align: text-top;
-}
-
-/*Лого*/
-img.logo {
-	height: 3em;
-	vertical-align: text-top;
-	float: left;
-	margin: 5px;
-}
-
 /*Иконка валюты страны*/
 img.currency-icon {
 	height: 64px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+/*строка для отображения списка валют*/
+.table-row {
+	border-top: 1px solid #ddd;
+	margin-bottom: 10px;
 }
 
 /*Удалить border адаптивной таблицы*/
@@ -44,21 +44,6 @@ img.currency-icon {
 		.content {
 			background-color: #002E52;
 		}
-}
-
-.footer {
-	color: black;
-	
-}	
-	.footer > .panel {
-		margin-bottom: 0;
-	}
-	.footer a:focus, a:hover {
-    color: #F0B353;
-}
-
-#default-navbar{
-	margin-bottom: 0;
 }
 
 /*Информация об одной валюте для всех экранов*/
@@ -104,10 +89,6 @@ img.currency-icon {
 					font-size: 0.9em;
 				}
 		}
-.news-kase-title {	
-	cursor: pointer;
-}
-	
 /****** officePage *******/
 /*Строка имя пункта*/
 .column-office-name {
@@ -177,9 +158,3 @@ img.currency-icon {
 	vertical-align: top;
 }
 /****** end ResourcePage *******/
-
-/***** Footer ************/
-/*счетчик посещений*/
-#_zero_68336 {
-	margin-top: 20px;
-}

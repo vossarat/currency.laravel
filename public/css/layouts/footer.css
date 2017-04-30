@@ -1,0 +1,18 @@
+/***** Footer ************/
+/*счетчик посещений*/
+#_zero_68336 {
+	margin-top: 20px;
+}
+
+.footer {
+	color: black;
+	
+}	
+	.footer > .panel {
+		margin-bottom: 0;
+	}
+	.footer a:focus, a:hover {
+    color: #F0B353;
+}
+
+/**********/

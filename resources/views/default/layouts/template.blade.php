@@ -23,7 +23,7 @@
 		<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
-		<link rel="stylesheet" href="{{ asset('css/default.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/layouts/default.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 		
@@ -37,7 +37,7 @@
 
             <div class="row">
                 @section('navbar')
-                @include('default.layouts.navbar')
+                	@include('default.layouts.navbar')
                 @show
             </div>
 
@@ -47,7 +47,7 @@
 
             <div class="row footer">
                 @section('footer')
-                @include('default.layouts.footer')
+                	@include('default.layouts.footer')
                 @show
             </div>
 
