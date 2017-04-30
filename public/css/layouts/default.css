@@ -89,15 +89,6 @@ img.currency-icon {
 					font-size: 0.9em;
 				}
 		}
-/****** officePage *******/
-/*Строка имя пункта*/
-.column-office-name {
-	text-align: left;
-}
-	.column-office-name img {
-		height: 25px;
-	}
-/**********/
 
 /*строка в которой можно центрировать по вертикали ячейку*/
 .row-for-middle {
@@ -117,44 +108,3 @@ img.currency-icon {
   	float: none !important;
   	vertical-align: middle;
 }
-
-/****** end OfficePage *******/
-
-/* ResourcePage */
-/*cтрока по 1 ресурсу*/
-.resource-info {
-	
-}
-	.resource-info-description {
-		font-size : 9px;
-	}
-	.resource-info-up {
-		color : green;
-	}
-	.resource-info-down {
-		color : red;
-	}
-	.resource-info-price {
-		margin: -5px;
-		font-size : 1.3em;
-	}
-/*desktop version row currency view*/	
-.resource-price {
-	font-size: 2em;
-}
-.resource-description {
-	font-size: 1.1em;
-}
-.resource-change-down {
-	color: red;
-	font-size: 1.2em;	
-	font-weight: bolder;	
-	vertical-align: bottom;
-}
-.resource-change-up {
-	color: green;
-	font-size: 1.2em;	
-	font-weight: bolder;
-	vertical-align: top;
-}
-/****** end ResourcePage *******/

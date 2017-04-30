@@ -20,15 +20,16 @@
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 		
-		<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
+		<!-- Include Default Style -->
 		<link rel="stylesheet" href="{{ asset('css/layouts/default.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/layouts/navbar.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/layouts/footer.css') }}">		 
 		
 		<!-- Include Font-Awesome -->
 		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+		
+		<!-- Include Some Style -->
+		@stack('css')
 	
 	</head>
 	<body>
@@ -42,7 +43,7 @@
             </div>
 
             <div class="row content">
-                @yield('content')
+                @yield('content')               
             </div>
 
             <div class="row footer">
@@ -57,9 +58,7 @@
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-		<script src="{{ asset('js/jquery.selectBoxIt.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>		
 		@stack('scripts')
 
 	</body>    

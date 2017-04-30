@@ -1,12 +1,3 @@
-{{-- Include style --}}
-<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
-<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
-
-<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
-<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
-<link rel="stylesheet" href="{{ asset('css/pages/office.css') }}"> 
-
 @extends('default.layouts.template')
 
 @section('title', 'Обменные пункты')
@@ -69,8 +60,18 @@
 		</tbody>
 	</table>
 </div>
+@push('css')
+	<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/dataTables.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/colReorder.dataTables.min.css') }}">		
+	<link rel="stylesheet" href="{{ asset('css/jquery.selectBoxIt.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/pages/office.css') }}"> 
+@endpush
 
 @push('scripts')
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/jquery.selectBoxIt.min.js') }}"></script>
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.colReorder.min.js') }}"></script>

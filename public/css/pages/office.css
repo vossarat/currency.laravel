@@ -1,0 +1,10 @@
+/****** officePage *******/
+/*Строка имя пункта*/
+.column-office-name {
+	text-align: left;
+}
+	.column-office-name img {
+		height: 25px;
+	}
+/**********/
+/****** end OfficePage *******/

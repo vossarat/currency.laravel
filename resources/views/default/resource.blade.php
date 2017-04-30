@@ -104,4 +104,8 @@
 
 	@endmobile
 
+@push('css')
+	<link rel="stylesheet" href="{{ asset('css/pages/resource.css') }}"> 
+@endpush
+
 @endsection

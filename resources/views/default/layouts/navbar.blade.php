@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="{{ asset('css/layouts/navbar.css') }}"> {{-- Include style --}}
-
 <nav class="navbar navbar-default" role="navigation" >
 	<div class="navbar-header">
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -55,4 +53,3 @@
 		</ul>
 	</div>
 </nav>
-
