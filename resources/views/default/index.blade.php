@@ -70,7 +70,7 @@
 		</div>
 	</div>
 	<div class="col-sm-4">
-		<div class="main-currency">			
+		<!--<div class="main-currency">			
 			<h2 class="text-center"> Ресурсы </h2>
 			
 			@foreach($jsonData as $resourceJson)
@@ -117,7 +117,7 @@
 				@endforeach
 			@endforeach
 			
-		</div>
+		</div>-->
 	</div>
 </div>
 

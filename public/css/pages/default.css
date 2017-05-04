@@ -2,7 +2,7 @@
 
 /*Информация об одной валюте для всех экранов*/
 .main-currency {
-	background-color: yellow; /*#FFF*/
+	background-color: #FFF;
 	margin:2em;	
 	margin-right:2em;
 	padding:1em 0;	
