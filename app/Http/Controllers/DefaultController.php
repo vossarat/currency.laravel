@@ -30,12 +30,17 @@ class DefaultController extends Controller
     *
     * @return
     */
-    public function index(Currency $currencyData)
+    public function index(Currency $currencyData, Resource $resource)
     {
+    	
+    	$collectionResourcesJSON = collect($resource->getResourceJsonData()); //коллекция данных о ресурсах с внешнего JSON
+        $collectionResourcesAdd = collect($resource->getResourcesAddData()) ; // дополнительная информация о ресурсах
 
         return view('default.index')->with([
                 'viewdata' => $this->mainPage->getCurrencyNationalBankData(),
                 'currencyData' => $currencyData->all(),
+                'jsonData' => $collectionResourcesJSON,
+                'addData' => $collectionResourcesAdd,
                 //'newsKase' => $this->news(), disable news KASE
             ]);
     }
@@ -79,8 +84,6 @@ class DefaultController extends Controller
     {
         $collectionResourcesJSON = collect($resource->getResourceJsonData()); //коллекция данных о ресурсах с внешнего JSON
         $collectionResourcesAdd = collect($resource->getResourcesAddData()) ; // дополнительная информация о ресурсах
-
-        //dd($collectionResourcesJSON);
 
         return view('default.resource')->with([
                 'jsonData' => $collectionResourcesJSON,

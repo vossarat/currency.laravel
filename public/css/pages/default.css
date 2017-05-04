@@ -1,0 +1,74 @@
+/****** Default Page *******/
+
+/*Информация об одной валюте для всех экранов*/
+.main-currency {
+	background-color: yellow; /*#FFF*/
+	margin:2em;	
+	margin-right:2em;
+	padding:1em 0;	
+}
+		.main-currency-title {
+			font-size: 2.5em;
+		}
+		.main-currency-description {
+			font-size: 3.2em;
+		}
+		.main-currency-change {
+			font-size: 2.6em;
+		}
+		.main-currency-pubDate {
+			font-size: 1.8em;
+		}
+		/*Класс цвета изменения величины курса*/
+		.UP {
+			color: green;
+		}
+		.DOWN {
+			color: red;
+		}
+		.col-xs-5 img {
+					height: 12em;
+					padding-top: 2em;
+					padding-left: 1em;
+				}	
+
+		/*Дополнение стиля информации об одной валюте для смартфона*/
+		@media (max-width: 768px) {
+			
+			.main-currency {
+				background-color: grey;
+				border-radius: 2em;
+				margin-left:0;	
+				margin-right:0;
+				margin-top: 0;
+				margin-bottom: 1em;				
+				line-height:1;
+				padding:0.5em 0;	
+			}
+			    .main-currency-title {
+					font-size: 1.5em;
+				}
+				.main-currency-description {
+					font-size: 2em;
+				}
+				.main-currency-change {
+					font-size: 1.3em;
+				}
+				.main-currency-pubDate {
+					font-size: 0.9em;
+				}
+				.col-xs-5 img {
+					height: 7em;
+					float: right;
+					padding-top: 1em;
+				}
+		}
+		
+/*строка для отображения списка валют*/
+.table-row-currency-all {
+	margin-left: 3em;
+	margin-right: 3em;
+	border-top: 1px solid #ddd;
+}
+
+/****** end Default Page *******/

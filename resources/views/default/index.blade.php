@@ -3,41 +3,42 @@
 @section('title', 'Курсы валют НБ РК')
 
 @section('content')
-
-		@foreach($viewdata as $currencyBase)
-		@if(in_array($currencyBase->title, ['USD','RUB','EUR']))
-		@foreach($currencyData as $oneCurrencyInfo)
-		@if($currencyBase->title == $oneCurrencyInfo->title)
-		<div class="col-xs-12 col-sm-4 content-currency-all"> {{-- разделить на 3 части --}}
-			<div class="row"> {{-- строка нужна для создания отступов между блоками информации --}}
-				<div class="col-xs-10 col-xs-offset-1"> {{-- отступы между блоками --}}
-					<div class="row one-currency-info row-for-middle-currency"> {{-- разделим иконку флага валюты и информацией о курсе --}}
-						<div class="col-xs-5 col-middle"> {{-- иконка флага --}}
-							<img src="/images/icon/{{ $currencyBase->title . '.PNG' }}" class="img-responsive">
-						</div>
-						{{-- строки информации о курсе --}}
-						<div class="row text-center one-currency-info-title">{{ $currencyBase->title }} 1 {{ $oneCurrencyInfo->symbol }} = </div>
-						<div class="row text-center one-currency-info-description">{{ $currencyBase->description}} ⍑</div>
-						<div class="row text-center one-currency-info-change {{$currencyBase->index=='DOWN' ?'DOWN' : 'UP'}} ">
-							<b>{{ $currencyBase->change}}</b>
-							<i class="glyphicon glyphicon-{{$currencyBase->index=='DOWN' ? 'arrow-down' : ($currencyBase->index=='UP' ? 'arrow-up':'ok')}}"></i>
-						</div>
-						<div class="row text-center one-currency-info-pubDate"><i>&nbsp;&nbsp;&nbsp{{ $currencyBase->pubDate }}</i></div>
-					</div>
+<div class="row-fluid">
+	@foreach($viewdata as $currencyBase)
+	@if(in_array($currencyBase->title, ['USD','RUB','EUR']))
+	@foreach($currencyData as $oneCurrencyInfo)
+	@if($currencyBase->title == $oneCurrencyInfo->title)
+	<div class="col-xs-12 col-sm-4"> {{-- разделить на 3 части --}}
+		<div class="main-currency">
+			<div class="row"> {{-- разделим иконку флага валюты и информацию о курсе --}}
+				<div class="col-xs-5">
+					<img src="/images/icon/{{ $currencyBase->title . '.PNG' }}">
+				</div>
+				<div class="col-xs-7 text-center">
+					<p class="main-currency-title">{{ $currencyBase->title }} 1 {{ $oneCurrencyInfo->symbol }} =</p>
+					<p class="main-currency-description">{{ $currencyBase->description}} ⍑</p>
+					<p class="main-currency-change {{$currencyBase->index=='DOWN' ?'DOWN' : 'UP'}}">
+					 <b>{{ $currencyBase->change}} 
+					 <i class="glyphicon glyphicon-{{$currencyBase->index=='DOWN' ? 'arrow-down' : ($currencyBase->index=='UP' ? 'arrow-up':'ok')}}"></i> </b></p>
+					<p class=""><i>{{ $currencyBase->pubDate }}</i></p>
 				</div>
 			</div>
 		</div>
-		@endif
-		@endforeach
-		@endif
-		@endforeach
+	</div>
+	@endif
+	@endforeach
+	@endif
+	@endforeach
+</div>
 
 <div class="row-fluid hidden-xs">
-	<div class="col-sm-7 content-currency-all">
-	<h1 class="text-center"> Курсы Национального Банка Республики Казахстан </h1>
-				@foreach($viewdata as $currency)
-				
-					<div class="row table-row">
+	<div class="col-sm-8">
+		<div class="main-currency">			
+			<h1 class="text-center hidden"> Курсы Национального Банка Республики Казахстан </h1>
+			<h2 class="text-center"> Курсы Национального Банка Республики Казахстан </h2>
+				@foreach($viewdata as $currency)				
+					<div class="table-row-currency-all">
+						<div class="row">											
 							<div class="col-sm-2 col-sm-offset-1 text-left">
 								{{ $currency->title }}
 								<img src="/images/icon/{{ $currency->title.'.PNG' }}" class="currency-icon">
@@ -63,10 +64,66 @@
 								</span>
 								<i>{{ $currency->pubDate }}</i>
 							</div>
+						</div>
 					</div>
 				@endforeach
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="main-currency">			
+			<h2 class="text-center"> Ресурсы </h2>
+			
+			@foreach($jsonData as $resourceJson)
+				@foreach($addData as $resourceAdd)
+					@if($resourceJson['fields']['name'] == $resourceAdd['fields']['name'])
+						<div class="row-fluid resource-info">
+								<div class="col-xs-3 col-sm-2 col-sm-offset-3">
+									<img src="/images/icon/{{ $resourceJson['fields']['name'].'.PNG' }}" class="currency-icon">
+								</div>
+
+								<div class="col-xs-9 col-sm-3">
+									<div class="row">
+										<div class="col-xs-12 text-left">
+											{{ $resourceJson['fields']['name'] }} {{-- name from json --}}
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xs-6 text-left">
+											{{ $resourceAdd['fields']['rusname'] }} {{-- rusname resource --}}
+										</div>
+										<div class="col-xs-6 resource-info-price text-right">
+											{{ $resourceJson['fields']['price'] }}$
+										</div>
+									</div>
+
+									<div class="row ">
+										<div class="col-xs-12 text-right">
+											<span class="resource-info-{{ $resourceJson['fields']['Change'] > 0 ? 'up':'down' }}">{{ $resourceJson['fields']['Change'] }}$</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-4 resource-info-description text-left">
+											{{ date('d.m.Y', strtotime( $resourceJson['fields']['utctime'] )) }}
+										</div>
+										<div class="col-xs-8  resource-info-description text-right">
+											{{ $resourceAdd['fields']['description'] }}
+										</div>
+									</div>
+								</div>
+
+						</div>
+					@endif
+				@endforeach
+			@endforeach
+			
+		</div>
 	</div>
 </div>
+
+@push('css')
+	<link rel="stylesheet" href="{{ asset('css/pages/default.css') }}"> 
+@endpush
 
 @endsection
 

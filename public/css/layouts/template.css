@@ -1,0 +1,55 @@
+/*** All  Pages ***/
+body {
+	color: #333;
+}
+
+/*Форма*/
+label {
+	color: black;
+}
+
+/*Иконка валюты страны*/
+img.currency-icon {
+	height: 64px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+/*Удалить border адаптивной таблицы*/
+.table-responsive {
+	border: 0px;
+}
+
+.content {
+	padding-top: 20px;
+	background-color: #fafafa;
+}
+
+/*Дополнение стиля шрифта и фона для смартфона*/
+@media (max-width: 768px) {
+	    body {
+			color: white;
+		}
+		.content {
+			background-color: #002E52;
+		}
+}
+
+/*строка в которой можно центрировать по вертикали ячейку*/
+.row-for-middle {
+  	display: table;
+  	width: 100%;
+  	/* fix overflow */
+  	table-layout: fixed;
+}
+.row-for-middle-currency {
+  	display: table;
+  	table-layout: fixed;
+}
+
+/*отцентрованная ячейка*/
+.col-middle {
+	display: table-cell;
+  	float: none !important;
+  	vertical-align: middle;
+}

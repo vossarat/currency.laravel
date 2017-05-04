@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 		
 		<!-- Include Default Style -->
-		<link rel="stylesheet" href="{{ asset('css/layouts/default.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/layouts/template.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/layouts/navbar.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/layouts/footer.css') }}">		 
 		
