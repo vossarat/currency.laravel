@@ -2,9 +2,8 @@
 
 /*Информация об одной валюте для всех экранов*/
 .main-currency {
-	background-color: grey;
-	margin:2em;	
-	margin-right:2em;
+	background-color: #fafafa;
+	margin:1em;	
 	padding:1em 0;	
 }
 		.main-currency-title {
@@ -69,6 +68,15 @@
 	margin-left: 3em;
 	margin-right: 3em;
 	border-top: 1px solid #ddd;
+}
+
+/* модуль ресурсов строка изменений вверх или вниз */
+.resource-info-up {
+	color: red;
+}
+
+.resource-info-down {
+	color: green;
 }
 
 /****** end Default Page *******/
