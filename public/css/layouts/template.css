@@ -13,6 +13,8 @@ img.currency-icon {
 	height: 64px;
 	margin-top: 5px;
 	margin-bottom: 10px;
+	-webkit-filter: drop-shadow(3px 5px 5px #000);
+	filter: drop-shadow(3px 5px 5px #000);
 }
 
 /*Удалить border адаптивной таблицы*/
@@ -22,7 +24,7 @@ img.currency-icon {
 
 .content {
 	padding-top: 20px;
-	background-color: #FFF;
+	background-color: #fafafa;
 }
 
 /*Дополнение стиля шрифта и фона для смартфона*/
@@ -52,4 +54,8 @@ img.currency-icon {
 	display: table-cell;
   	float: none !important;
   	vertical-align: middle;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #FFF;
 }

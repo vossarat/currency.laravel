@@ -10,8 +10,8 @@
 	@if($currencyBase->title == $oneCurrencyInfo->title)
 	<div class="col-xs-12 col-sm-4"> {{-- разделить на 3 части --}}
 		<div class="main-currency">
-			<div class="row"> {{-- разделим иконку флага валюты и информацию о курсе --}}
-				<div class="col-xs-5">
+			<div class="row for-middle"> {{-- разделим иконку флага валюты и информацию о курсе --}}
+				<div class="col-xs-5 col-for-middle text-center">
 					<img src="/images/icon/{{ $currencyBase->title . '.PNG' }}">
 				</div>
 				<div class="col-xs-7 text-center">
@@ -37,6 +37,9 @@
 			<h1 class="text-center hidden"> Курсы Национального Банка Республики Казахстан </h1>
 			<h2 class="text-center"> Курсы Национального Банка Республики Казахстан </h2>
 			@foreach($viewdata as $currency)
+			@if(in_array($currency->title, ['USD','RUB','EUR', 'XDR']))
+				@continue
+			@endif
 			<div class="table-row-currency-all">
 				<div class="row">
 					<div class="col-sm-2 col-sm-offset-1 text-left">
@@ -121,43 +124,8 @@
 	<link rel="stylesheet" href="{{ asset('css/pages/default.css') }}"> 
 @endpush
 
+@push('scripts') 
+<script src="{{ asset('js/middle.js') }}"></script> {{-- скрипт выравнивания изображения валюты по центру --}}
+@endpush
+
 @endsection
-
-
-{{-- disable news KASE
-<div class="hidden-xs">
-	<div class="row-fluid">
-		<div class="col-sm-8 col-sm-offset-2 ">
-
-
-			<table class = "table">
-
-				<thead>
-					<tr>
-						<th><h2>Новости KASE</h2></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					@foreach($newsKase as $item)
-					@if ($loop->iteration == 11)
-					@break
-					@endif
-					<tr>
-						<td>
-							<details class="news-kase-title">
-								<summary>{{ $item[0] }}...Подробнее...</summary>
-								<pre>{!! $item[3] !!}</pre>
-							</details>
-
-						</td>
-					</tr>
-					@endforeach
-				</tbody>
-
-			</table>
-
-		</div>
-	</div>
-</div>
---}}

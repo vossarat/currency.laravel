@@ -1,0 +1,16 @@
+.row-currencies {
+	border: 1px solid #ddd;
+}
+
+/*Класс цвета изменения величины курса*/
+.UP {
+	color: green;
+}
+.DOWN {
+	color: red;
+}
+
+.col-sm-3 {
+	border:1px solid red;
+}
+	

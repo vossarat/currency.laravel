@@ -2,9 +2,9 @@
 
 /*Информация об одной валюте для всех экранов*/
 .main-currency {
-	background-color: #fafafa;
-	margin:1em;	
-	padding:1em 0;	
+	background-color: #FFF;
+	margin: 1em;
+	padding: 1em;
 }
 		.main-currency-title {
 			font-size: 2.5em;
@@ -27,8 +27,6 @@
 		}
 		.col-xs-5 img {
 					height: 12em;
-					padding-top: 2em;
-					padding-left: 1em;
 				}	
 
 		/*Дополнение стиля информации об одной валюте для смартфона*/
@@ -57,9 +55,8 @@
 					font-size: 0.9em;
 				}
 				.col-xs-5 img {
+					padding-left: 1em;
 					height: 7em;
-					float: right;
-					padding-top: 1em;
 				}
 		}
 		
@@ -79,4 +76,15 @@
 	color: green;
 }
 
+/* тень для выделения иконки валюты на белом фоне*/
+.col-xs-5 > img
+{
+-webkit-filter: drop-shadow(3px 5px 5px #000);
+filter: drop-shadow(3px 5px 5px #000);
+}
+.col-xs-2 > img
+{
+-webkit-filter: drop-shadow(3px 5px 5px #000);
+filter: drop-shadow(3px 5px 5px #000);
+}
 /****** end Default Page *******/

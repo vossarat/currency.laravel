@@ -42,7 +42,7 @@
 										<div class="col-xs-4 resource-info-description text-left">
 											{{ date('d.m.Y', strtotime( $resourceJson['fields']['utctime'] )) }}
 										</div>
-										<div class="col-xs-8  resource-info-description text-right">
+										<div class="col-xs-8 resource-info-description text-right">
 											{{ $resourceAdd['fields']['description'] }}
 										</div>
 									</div>
@@ -60,7 +60,7 @@
 	</table>
 	
 	@elsemobile
-	<table class="table">
+	<table class="table table-striped">
 		<tbody>	
 			@foreach($jsonData as $resourceJson)
 				@foreach($addData as $resourceAdd)
@@ -76,7 +76,7 @@
 								</div>
 								
 								<div class="col-sm-2 col-middle">
-									{{ $resourceAdd['fields']['rusname'] }}
+									<h4>{{ $resourceAdd['fields']['rusname'] }}</h4>
 								</div>									
 								
 								<div class="col-sm-1 col-middle resource-price">
