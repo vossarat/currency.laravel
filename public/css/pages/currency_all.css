@@ -13,4 +13,15 @@
 .col-sm-3 {
 	border:1px solid red;
 }
+
+/* TEST */
+
+.border-red {
+	border: 1px solid red;
+}
+.border-green {
+	border: 1px solid green;
+}
+
+/* TEST */
 	

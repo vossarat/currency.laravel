@@ -95,9 +95,9 @@
 						</div>
 					</div>
 
-					<div class="row ">
+					<div class="row">
 						<div class="col-xs-12 text-right">
-						<span class="resource-info-{{ $resourceJson['fields']['Change'] > 0 ? 'up':'down' }}">
+						<span class="resource-info-{{ $resourceJson['fields']['Change'] < 0 ? 'down':'up' }}">
 						<b>{{ $resourceJson['fields']['Change'] }}$</b></span>
 						</div>
 					</div>

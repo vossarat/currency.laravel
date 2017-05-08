@@ -69,11 +69,11 @@
 
 /* модуль ресурсов строка изменений вверх или вниз */
 .resource-info-up {
-	color: red;
+	color: green;
 }
 
 .resource-info-down {
-	color: green;
+	color: red;
 }
 
 /* тень для выделения иконки валюты на белом фоне*/
