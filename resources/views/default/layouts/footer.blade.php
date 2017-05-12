@@ -1,13 +1,13 @@
 <div class="panel panel-default">
-    <div class="col-xs-1" id="_zero_68336">
+    <!--<div class="col-xs-1" id="_zero_68336">
         <span>
             <a href="http://zero.kz/?s=68336" target="_blank">
                 <img src="http://c.zero.kz/z.png?u=68336" width="88" height="31" alt="ZERO.kz" />
             </a>
         </span>
-    </div>
+    </div>-->
 
-    <div class="col-xs-10">
+    <div class="col-xs-12">
         <div class="panel-body">
             <div class="row">
                 
@@ -45,8 +45,7 @@
     </div>
 </div>
 
-
-@push('scripts')
+<!--@push('scripts')
 <script type="text/javascript">
 var zero_kz = zero_kz || [];
 _zero_kz_.push(["id", 68336]);
@@ -62,4 +61,4 @@ _zero_kz_.push(["type", 1]);
     a.parentNode.insertBefore(s, a);
 })();
 </script>
-@endpush
+@endpush-->

@@ -1,69 +1,217 @@
 /****** Default Page *******/
+/*Информация об одной валюте*/
+/*для телефона*/
+@media screen and (max-width: 768px) {
+	.main-currency {
+		background-color: grey;
+		border-radius: 2em;
+		margin-left:0;	
+		margin-right:0;
+		margin-top: 0;
+		margin-bottom: 1em;				
+		line-height:1;
+		padding:0.5em 0;	
+	}
+	    .main-currency-title {
+			font-size: 1.5em;
+		}
+		.main-currency-description {
+			font-size: 2em;
+		}
+		.main-currency-change {
+			font-size: 1.3em;
+		}
+		.main-currency-pubDate {
+			font-size: 0.9em;
+		}
+		.col-xs-5 img {
+			padding-left: 1em;
+			height: 7em;
+		}
+}
 
-/*Информация об одной валюте для всех экранов*/
+/*для desktop до 800px*/
+@media screen and (min-width: 769px) and (max-width: 1023px) {
 .main-currency {
 	background-color: #FFF;
 	margin: 1em;
 	padding: 1em;
 }
 		.main-currency-title {
-			font-size: 2.5em;
+			font-size: 1.3em;
 		}
 		.main-currency-description {
-			font-size: 3.2em;
+			font-size: 1.2em;
 		}
 		.main-currency-change {
-			font-size: 2.6em;
+			font-size: 1em;
 		}
 		.main-currency-pubDate {
-			font-size: 1.8em;
+			font-size: 0.7em;
 		}
-		/*Класс цвета изменения величины курса*/
-		.UP {
-			color: green;
+		.col-xs-5 img {
+					height: 5em;
+				}
+		/*Все валюты Нацбанка*/
+	/*Все валюты Нацбанка*/
+	/*название валюты*/
+	.col-sm-3 > h4 {
+		font-size: 1em;
+	}
+	/*строка =*/
+	.col-sm-3 > h3 {
+		font-size: 1em;
+	}
+	/*курс валюты*/
+	.col-sm-2 > span >h3 {
+		font-size: 1em;
+	}
+	img.currency-icon {
+		height: 40px;
+	}
+	/*блок ресурсы*/
+	/*rusname*/
+	.col-xs-6 > h3   {
+		font-size: 1.1em;
+	}
+	/*price*/
+	.col-xs-6 > h4  {
+		font-size: 1.1em;
+	}
+	/*Change*/
+	.col-xs-12 > span > b  {
+		font-size: 0.9em;
+	}
+	/*date*/
+	.col-xs-4 > i  {
+		font-size: 0.6em;
+	}
+	/*description*/
+	.col-xs-8 > i 	{
+		font-size: 0.6em;
+	}	
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1399px) {
+.main-currency {
+	background-color: #FFF;
+	margin: 1em;
+	padding: 1em;
+}
+		.main-currency-title {
+			font-size: 1.9em;
 		}
-		.DOWN {
-			color: red;
+		.main-currency-description {
+			font-size: 2.5em;
+		}
+		.main-currency-change {
+			font-size: 2em;
+		}
+		.main-currency-pubDate {
+			font-size: 1.2em;
+		}
+		.col-xs-5 img {
+					height: 8em;
+				}
+	
+	/*блок Все валюты Нацбанка*/
+	/*название валюты*/
+	.col-sm-3 > h4 {
+		font-size: 1.2em;
+	}
+	/*строка =*/
+	.col-sm-3 > h3 {
+		font-size: 1.2em;
+	}
+	/*курс валюты*/
+	.col-sm-2 > span >h3 {
+		font-size: 1.2em;
+	}
+	img.currency-icon {
+		height: 50px;
+	}
+	
+	/*блок ресурсы*/
+	/*rusname*/
+	.col-xs-6 > h3   {
+		font-size: 1.3em;
+	}
+	/*price*/
+	.col-xs-6 > h4  {
+		font-size: 1.2em;
+	}
+	/*Change*/
+	.col-xs-12 > span > b  {
+		font-size: 1em;
+	}
+	/*date*/
+	.col-xs-4 > i  {
+		font-size: 0.8em;
+	}
+	/*description*/
+	.col-xs-8 > i 	{
+		font-size: 0.8em;
+	}
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1599px) {
+.main-currency {
+	background-color: #FFF;
+	margin: 1em;
+	padding: 1em;
+}
+		.main-currency-title {
+			font-size: 2.1em;
+		}
+		.main-currency-description {
+			font-size: 2.7em;
+		}
+		.main-currency-change {
+			font-size: 2.2em;
+		}
+		.main-currency-pubDate {
+			font-size: 1.4em;
 		}
 		.col-xs-5 img {
 					height: 12em;
 				}	
+}
 
-		/*Дополнение стиля информации об одной валюте для смартфона*/
-		@media (max-width: 768px) {
-			
-			.main-currency {
-				background-color: grey;
-				border-radius: 2em;
-				margin-left:0;	
-				margin-right:0;
-				margin-top: 0;
-				margin-bottom: 1em;				
-				line-height:1;
-				padding:0.5em 0;	
-			}
-			    .main-currency-title {
-					font-size: 1.5em;
-				}
-				.main-currency-description {
-					font-size: 2em;
-				}
-				.main-currency-change {
-					font-size: 1.3em;
-				}
-				.main-currency-pubDate {
-					font-size: 0.9em;
-				}
-				.col-xs-5 img {
-					padding-left: 1em;
-					height: 7em;
-				}
+@media screen and (min-width: 1600px) {
+.main-currency {
+	background-color: #FFF;
+	margin: 1em;
+	padding: 1em;
+}
+		.main-currency-title {
+			font-size: 2.4em;
 		}
-		
+		.main-currency-description {
+			font-size: 3em;
+		}
+		.main-currency-change {
+			font-size: 2.4em;
+		}
+		.main-currency-pubDate {
+			font-size: 1.8em;
+		}
+		.col-xs-5 img {
+					height: 14em;
+				}
+}
+
+/*Класс цвета изменения величины курса*/
+.UP {
+	color: green;
+}
+.DOWN {
+	color: red;
+}
+
 /*строка для отображения списка валют*/
 .table-row-currency-all {
-	margin-left: 3em;
-	margin-right: 3em;
+	margin-left: 2em;
+	margin-right: 2em;
 	border-top: 1px solid #ddd;
 }
 
