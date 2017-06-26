@@ -1,13 +1,14 @@
 <div class="panel panel-default">
-    <!--<div class="col-xs-1" id="_zero_68336">
-        <span>
-            <a href="http://zero.kz/?s=68336" target="_blank">
-                <img src="http://c.zero.kz/z.png?u=68336" width="88" height="31" alt="ZERO.kz" />
-            </a>
-        </span>
-    </div>-->
-
-    <div class="col-xs-12">
+    <div class="col-xs-2">
+ 		<div id="informer">	
+			<!-- Yandex.Metrika informer -->
+			<a href="https://metrika.yandex.ru/stat/?id=44643979&amp;from=informer"
+			target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/44643979/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+			style="width:88px; height:31px; border:0; margin-top: 20px; z-index: 9999;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="44643979" data-lang="ru" /></a>
+			<!-- /Yandex.Metrika informer -->
+	    </div>
+	</div>
+    <div class="col-xs-10">
         <div class="panel-body">
             <div class="row">
                 
@@ -45,20 +46,34 @@
     </div>
 </div>
 
-<!--@push('scripts')
+@push('scripts')
+<script src="{{ asset('js/middle.js') }}"></script> {{-- скрипт выравнивания изображения валюты по центру --}}
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
-var zero_kz = zero_kz || [];
-_zero_kz_.push(["id", 68336]);
-_zero_kz_.push(["type", 1]);
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter44643979 = new Ya.Metrika({
+					id:44643979,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true
+				});
+			} catch(e) { }
+		});
 
-(function () {
-    var a = document.getElementsByTagName("script")[0],
-    s = document.createElement("script");
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = (document.location.protocol == "https:" ? "https:" : "http:")
-    + "//c.zero.kz/z.js";
-    a.parentNode.insertBefore(s, a);
-})();
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
 </script>
-@endpush-->
+<noscript><div><img src="https://mc.yandex.ru/watch/44643979" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+@endpush

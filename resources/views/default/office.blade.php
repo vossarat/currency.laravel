@@ -44,7 +44,7 @@
 			@foreach($viewdata as $content)
 
 			<tr>
-				<td class="hidden column-office-name"><img src="/storage/logotips/{{$content->name}}.png">{{ $content->name }}</td>
+				<td class="hidden column-office-name"><img src="/storage/logotips/{{$content->name}}.png">&nbsp;&nbsp;{{ $content->name }}</td>
 
 				@for($i=1; $i<=3; $i++)
 				@foreach($content->currency as $currency)
